@@ -1,0 +1,17 @@
+{
+  "desktopPet": "Pet de Mesa",
+  "enable": "Ativar Pet de Mesa",
+  "size": "Tamanho do Pet",
+  "sizeSmall": "Pequeno ({{px}}px)",
+  "sizeMedium": "Médio ({{px}}px)",
+  "sizeLarge": "Grande ({{px}}px)",
+  "dnd": "Não Perturbe",
+  "dndDescription": "O pet fica parado, ignora eventos da IA",
+  "confirmBubble": "Mostrar autorizações no pet",
+  "confirmBubbleDescription": "Quando desativado, as autorizações de ferramentas da IA ficam na janela principal do chat",
+  "pat": "Acariciar",
+  "resetPosition": "Redefinir Posição",
+  "hide": "Ocultar",
+  "showHide": "Mostrar/Ocultar",
+  "desktopOnly": "O Pet de Mesa está disponível apenas no aplicativo desktop. Não pode ser usado no modo WebUI pelo navegador."
+}

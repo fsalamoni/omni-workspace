@@ -1,0 +1,133 @@
+{
+  "sendbox": {},
+  "network": {
+    "cloudflare_blocked": "A proteção Cloudflare bloqueou o acesso a {{service}}. Sugestões: 1) Use VPN 2) Troque de rede 3) Tente novamente mais tarde 4) Mude para outros serviços de IA",
+    "network_timeout": "Tempo limite da rede, nova tentativa de conexão automaticamente...",
+    "connection_refused": "Conexão recusada, verifique se o serviço Codex está funcionando corretamente.",
+    "unknown_error": "Erro de conexão de rede, verifique as configurações de rede.",
+    "retry_attempt": "Tentando novamente {{current}}...",
+    "cloudflare_blocked_title": "🚫 Serviço {{service}} bloqueado pela proteção Cloudflare",
+    "network_timeout_title": "⏱️ Tempo limite de conexão de rede",
+    "connection_refused_title": "❌ Conexão de serviço recusada",
+    "unknown_error_title": "🔌 Erro de conexão de rede",
+    "recovery_suggestions": "**Soluções sugeridas:**",
+    "technical_info": "**Informações Técnicas:**",
+    "error_type": "Tipo de erro",
+    "retry_count": "Contagem de novas tentativas",
+    "error_details": "Detalhes do erro",
+    "quick_switch_title": "💡 **Opções de troca rápida:**",
+    "quick_switch_content": "Quando o serviço atual encontra restrições de rede, você pode:\n\n1. **Alternar assistente de IA imediatamente**: selecione outros assistentes disponíveis no painel esquerdo\n2. **Verifique o status do serviço**: a disponibilidade de diferentes serviços de IA pode variar de acordo com a região\n3. **Otimização de rede**: use um ambiente de rede estável para melhorar a taxa de sucesso da conexão\n4. **Tente novamente mais tarde**: as restrições de rede geralmente são temporárias\n\n**Dica**: é recomendável configurar vários serviços de IA como alternativas para garantir a continuidade do trabalho.",
+    "recovery_actions": {
+      "cloudflare_blocked": [
+        "• Use VPN ou serviço proxy",
+        "• Alternar ambiente de rede (como hotspot móvel)",
+        "• Aguarde de 10 a 30 minutos e tente novamente",
+        "• Limpar cache e cookies do navegador",
+        "• Mudar para outros serviços disponíveis: ChatGPT, Claude, Qwen, Gemini"
+      ],
+      "network_timeout": [
+        "• Verifique se a conexão de rede está estável",
+        "• Tentar novamente a operação de conexão",
+        "• Mude para um ambiente de rede mais estável",
+        "• Verifique as configurações do firewall"
+      ],
+      "connection_refused": [
+        "• Verifique se o Codex CLI está instalado corretamente",
+        "• Verifique a configuração do serviço e as chaves de API",
+        "• Reinicie o aplicativo",
+        "• Verifique se as portas locais estão ocupadas"
+      ],
+      "unknown": [
+        "• Verifique o status da conexão de rede",
+        "• Tentar novamente a operação atual",
+        "• Alternar ambiente de rede",
+        "• Entre em contato com o suporte técnico"
+      ]
+    }
+  },
+  "thinking": {
+    "processing": "🤔 A Codex está pensando...",
+    "completed": "💭 Processo de pensamento concluído",
+    "analyzing": "Analisando o problema e formulando soluções...",
+    "composing": "Compondo conteúdo de resposta..."
+  },
+  "error": {
+    "system_init_failed": "Falha ao inicializar o sistema Codex",
+    "invalid_message_format": "Formato de mensagem inválido",
+    "invalid_input": "Entrada inválida fornecida",
+    "session_timeout": "A sessão expirou. Tente novamente",
+    "permission_denied": "Permissão negada para esta operação",
+    "context_error": "Ocorreu um erro em {{context}}. Atualize ou tente novamente.",
+    "generic": "O componente Codex encontrou uma exceção. Tente novamente mais tarde.",
+    "troubleshooting": "Sugestões para solução de problemas",
+    "suggestion_1": "Verifique se a conexão de rede está estável",
+    "suggestion_2": "Certifique-se de que o serviço Codex esteja funcionando corretamente",
+    "suggestion_3": "Tente reiniciar o aplicativo",
+    "suggestion_4": "Limpe o cache do navegador e o armazenamento local"
+  },
+  "performance": {
+    "virtualization_enabled": "A virtualização de lista está habilitada para melhor desempenho",
+    "virtualization_disabled": "A virtualização de lista está desativada, mostrando todos os itens",
+    "debounce_enabled": "A depuração de entrada está habilitada (atraso de {{delay}}ms)",
+    "debounce_disabled": "A depuração de entrada está desativada"
+  },
+  "config": {
+    "loaded": "Configuração carregada com sucesso",
+    "updated": "Configuração atualizada com sucesso",
+    "reset": "Configuração redefinida para os padrões",
+    "validation_failed": "Falha na validação da configuração",
+    "import_success": "Configuração importada com sucesso",
+    "import_failed": "Falha ao importar a configuração",
+    "export_success": "Configuração exportada com sucesso"
+  },
+  "permissions": {
+    "allow_once": "Permitir uma vez",
+    "allow_always": "Permitir sempre",
+    "reject_once": "Rejeitar uma vez",
+    "reject_always": "Rejeitar sempre",
+    "allow_once_desc": "Conceda permissão apenas para esta solicitação",
+    "allow_always_desc": "Sempre conceda permissão para solicitações semelhantes",
+    "reject_once_desc": "Rejeitar apenas esta solicitação",
+    "reject_always_desc": "Sempre rejeite solicitações semelhantes",
+    "processing": "Processamento...",
+    "response_sent": "Resposta enviada com sucesso",
+    "choose_action": "Escolha uma ação:",
+    "titles": {
+      "exec_approval_request": "Permissão de comando de execução",
+      "apply_patch_approval_request": "Aplicar permissão de alterações de arquivo",
+      "command_execution": "Permissão de execução de comando",
+      "file_write": "Permissão de gravação de arquivo",
+      "file_read": "Permissão de leitura de arquivo"
+    },
+    "labels": {
+      "command": "Comando:",
+      "directory": "Diretório:",
+      "reason": "Razão:",
+      "files_to_modify": "Arquivos para modificar",
+      "summary": "Resumo:"
+    },
+    "descriptions": {
+      "command_execution": "Solicitações do Codex para executar comandos do sistema",
+      "file_write": "Solicitações do Codex para modificar ou criar arquivos",
+      "file_read": "Solicitações do Codex para ler o conteúdo do arquivo"
+    },
+    "command_execution": {
+      "allow_once_desc": "Permitir apenas a execução deste comando",
+      "allow_always_desc": "Sempre permitir todas as solicitações de execução de comandos",
+      "reject_once_desc": "Rejeitar apenas a execução deste comando",
+      "reject_always_desc": "Sempre rejeite todas as solicitações de execução de comando"
+    },
+    "file_write": {
+      "allow_once_desc": "Permitir apenas gravação deste arquivo",
+      "allow_always_desc": "Sempre permitir todas as solicitações de gravação de arquivo",
+      "reject_once_desc": "Rejeitar este arquivo somente gravação",
+      "reject_always_desc": "Sempre rejeite todas as solicitações de gravação de arquivo"
+    },
+    "file_read": {
+      "allow_once_desc": "Permitir este arquivo somente leitura",
+      "allow_always_desc": "Sempre permitir todas as solicitações de leitura de arquivos",
+      "reject_once_desc": "Rejeitar este arquivo somente leitura",
+      "reject_always_desc": "Sempre rejeite todas as solicitações de leitura de arquivo"
+    }
+  }
+}

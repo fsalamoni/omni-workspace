@@ -1,0 +1,60 @@
+{
+  "sider": {
+    "title": "Equipes",
+    "createTeam": "Nova Equipe",
+    "pin": "Fixar",
+    "unpin": "Desafixar",
+    "rename": "Renomear",
+    "delete": "Excluir",
+    "renameTitle": "Renomear Equipe",
+    "renamePlaceholder": "Nome da equipe",
+    "deleteConfirm": "Excluir esta equipe?",
+    "deleteConfirmContent": "Esta ação não pode ser desfeita.",
+    "deleteOk": "Excluir",
+    "deleteCancel": "Cancelar",
+    "renameOk": "Salvar",
+    "renameCancel": "Cancelar",
+    "renameSuccess": "Equipe renomeada",
+    "deleteSuccess": "Equipe excluída"
+  },
+  "newAgent": "Novo Agente",
+  "noMessages": "Nenhuma mensagem ainda.",
+  "agentNotConfigured": "Agente ainda não configurado.",
+  "sendBox": {
+    "placeholder": "Mensagem para o agente coordenador..."
+  },
+  "create": {
+    "title": "Criar Equipe",
+    "namePlaceholder": "Nome da equipe",
+    "dispatchAgentPlaceholder": "Selecionar líder da equipe",
+    "subAgentsPlaceholder": "Selecionar sub-agentes",
+    "workspacePlaceholder": "Caminho do workspace (opcional)",
+    "confirm": "Criar Equipe",
+    "noSupportedAgents": "Nenhum agente compatível instalado",
+    "supportedAgentsHint": "Atualmente suporta Claude e Codex. Mais agentes em breve.",
+    "leaderDesc": "Entende seus objetivos e coordena os agentes para concluir as tarefas",
+    "step": {
+      "dispatch": "Líder da Equipe",
+      "subAgents": "Sub-Agentes",
+      "workspace": "Workspace"
+    },
+    "nameRequired": "Digite um nome para a equipe",
+    "leaderRequired": "Selecione um líder da equipe",
+    "selectFolder": "Selecionar pasta",
+    "recentLabel": "Recentes",
+    "chooseDifferentFolder": "Escolher outra pasta",
+    "error": "Falha ao criar a equipe"
+  },
+  "removeAgent": {
+    "confirmTitle": "Remover Membro da Equipe",
+    "confirmContent": "Este membro está ativo no momento. Forçar remoção?"
+  },
+  "emptyState": {
+    "subtitle": "Descreva seu objetivo e eu colocarei a equipe para trabalhar",
+    "suggestions": {
+      "debate": "Organizar um debate com agentes defendendo lados diferentes",
+      "interview": "Planejar uma entrevista aprofundada entre agentes",
+      "expert_review": "Ter múltiplos especialistas analisando o mesmo problema"
+    }
+  }
+}

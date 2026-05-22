@@ -8,4 +8,4 @@ start /B "" "D:\SalomoneWorkspace\omni-workspace\backend\.venv\Scripts\python.ex
 
 echo [2/2] Iniciando AionUI WebUI...
 cd frontend
-npm run webui
+bun run server:start

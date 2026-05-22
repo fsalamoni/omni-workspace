@@ -1,0 +1,21 @@
+{
+  "agentFallbackNotice": "{{original}} está indisponível, usando {{fallback}} no lugar.",
+  "noAgentAvailable": "Nenhum Agente Principal disponível. Faça login no Google ou instale o Claude/Codex CLI. Ir para configurações?",
+  "noAgentAvailableShort": "Nenhum Agente Principal disponível. Clique para configurar.",
+  "agentTabAutoSwitch": "Modelo não compatível com o Gemini, alternado automaticamente para {{fallback}}",
+  "autoSwitchToAgent": "O Gemini não está configurado, alternando automaticamente para {{agent}}",
+  "autoSwitchedAgent": "{{from}} não está disponível, alternado para {{to}}",
+  "promptExamplesHint": "Experimente prompts de exemplo:",
+  "agentSwitcherLabel": "Agente",
+  "switchedToAgent": "Alternado para {{agent}}",
+  "scanning": {
+    "initialMessage": "O Agente atual está indisponível, detectando outros agentes disponíveis...",
+    "scanningMessage": "Procurando agentes locais disponíveis...",
+    "connectingMessage": "Conectado com sucesso, aguarde...",
+    "establishingConnection": "Estabelecendo conexão...",
+    "statusQueued": "Na fila",
+    "statusTesting": "Testando latência...",
+    "statusUnreachable": "Inacessível",
+    "statusAvailable": "Disponível"
+  }
+}
