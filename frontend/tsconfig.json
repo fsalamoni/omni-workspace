@@ -1,28 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    "target": "ES6",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "allowJs": false,
+    "skipLibCheck": true,
     "esModuleInterop": true,
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"],
+      "@process/*": ["./src/process/*"],
+      "@renderer/*": ["./src/renderer/*"],
+      "@worker/*": ["./src/process/worker/*"]
     }
   },
-  "include": ["src", "vite-env.d.ts"]
+  "include": [
+    "src/**/*",
+    "uno.config.ts",
+    "electron.vite.config.ts",
+    "playwright.config.ts",
+    "src/renderer/types.d.ts"
+  ],
+  "exclude": [
+    "src/process/services/database/drivers/BunSqliteDriver.ts",
+    "src/process/services/database/drivers/BunSqliteDriver.bun.test.ts"
+  ]
 }
