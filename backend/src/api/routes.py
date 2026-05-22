@@ -78,10 +78,19 @@ async def list_global_models(db = Depends(get_settings_db)):
     
     # Force inject state-of-the-art models that litellm might miss
     sota_models = [
-        {"id": "deepseek/deepseek-reasoner", "label": "DeepSeek Reasoner (R1)", "provider": "deepseek"},
-        {"id": "deepseek/deepseek-chat", "label": "DeepSeek Chat (V3)", "provider": "deepseek"},
+        {"id": "deepseek/deepseek-v4-pro", "label": "DeepSeek V4 Pro", "provider": "deepseek"},
+        {"id": "deepseek/deepseek-v4-flash", "label": "DeepSeek V4 Flash", "provider": "deepseek"},
+        {"id": "deepseek/deepseek-reasoner", "label": "DeepSeek Reasoner (Legacy)", "provider": "deepseek"},
+        {"id": "deepseek/deepseek-chat", "label": "DeepSeek Chat (Legacy)", "provider": "deepseek"},
         {"id": "openrouter/deepseek/deepseek-r1", "label": "DeepSeek R1 (OpenRouter)", "provider": "openrouter"},
-        {"id": "openrouter/deepseek/deepseek-chat", "label": "DeepSeek V3 (OpenRouter)", "provider": "openrouter"},
+        {"id": "openrouter/deepseek/deepseek-chat", "label": "DeepSeek V3/V4 (OpenRouter)", "provider": "openrouter"},
+        {"id": "openai/o3-mini", "label": "OpenAI o3-mini", "provider": "openai"},
+        {"id": "openai/o1", "label": "OpenAI o1", "provider": "openai"},
+        {"id": "openai/gpt-4.5-preview", "label": "OpenAI GPT-4.5 Preview", "provider": "openai"},
+        {"id": "anthropic/claude-3-7-sonnet-20250219", "label": "Claude 3.7 Sonnet", "provider": "anthropic"},
+        {"id": "anthropic/claude-3-5-sonnet-20241022", "label": "Claude 3.5 Sonnet", "provider": "anthropic"},
+        {"id": "google/gemini-2.5-flash", "label": "Gemini 2.5 Flash", "provider": "google"},
+        {"id": "google/gemini-2.5-pro", "label": "Gemini 2.5 Pro", "provider": "google"},
         {"id": "openrouter/openai/o3-mini", "label": "OpenAI o3-mini (OpenRouter)", "provider": "openrouter"},
     ]
     

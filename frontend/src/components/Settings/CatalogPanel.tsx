@@ -45,11 +45,19 @@ export default function CatalogPanel() {
 
   const isInCatalog = (modelId: string) => personalCatalog.some(m => m.id === modelId);
 
-  const toggleCatalog = (model: ModelInfo) => {
+  const toggleCatalog = async (model: ModelInfo) => {
+    let newCatalog;
     if (isInCatalog(model.id)) {
-      setPersonalCatalog(prev => prev.filter(m => m.id !== model.id));
+      newCatalog = personalCatalog.filter(m => m.id !== model.id);
     } else {
-      setPersonalCatalog(prev => [...prev, model]);
+      newCatalog = [...personalCatalog, model];
+    }
+    setPersonalCatalog(newCatalog);
+    
+    try {
+      await savePersonalCatalog(newCatalog);
+    } catch (err) {
+      console.error("Failed to auto-save catalog:", err);
     }
   };
 
