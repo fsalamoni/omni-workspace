@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -193,7 +193,7 @@ describe('tray module', () => {
 
       createOrUpdateTray();
 
-      expect(mockTrayInstance.setToolTip).toHaveBeenCalledWith('AionUi');
+      expect(mockTrayInstance.setToolTip).toHaveBeenCalledWith('SalomoneUI');
     });
 
     it('should be idempotent - second call does not create another tray', async () => {

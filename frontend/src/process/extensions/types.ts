@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -67,11 +67,11 @@ export const ExtensionMetaSchema = z
     /** P2: AIONUI core version compatibility */
     engine: z
       .object({
-        aionui: z
+        salomoneui: z
           .string()
           .regex(/^\^?\d+\.\d+\.\d+(-[\w.]+)?$/, 'Engine version must be semver format')
           .optional()
-          .describe('Compatible AionUI core version range'),
+          .describe('Compatible SalomoneUI core version range'),
       })
       .optional(),
     /**
@@ -113,7 +113,7 @@ export const ExtensionMetaSchema = z
      */
     permissions: z
       .object({
-        /** Read/write to AionUI persistent storage */
+        /** Read/write to SalomoneUI persistent storage */
         storage: z.boolean().default(false),
         /** Network access: false (none), true (all), or { allowedDomains: [...], reasoning?: string } */
         network: z

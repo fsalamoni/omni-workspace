@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — Settings Store (Zustand + persist)
+   SalomoneUI — Settings Store (Zustand + persist)
    ───────────────────────────────────────────── */
 
 import { create } from 'zustand';
@@ -124,7 +124,7 @@ export const useSettingsStore = create<SettingsState>()(
       clearTerminal: () => set({ terminalLines: [] }),
     }),
     {
-      name: 'omni-workspace-settings',
+      name: 'salomoneui-settings',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         apiKeys: state.apiKeys,

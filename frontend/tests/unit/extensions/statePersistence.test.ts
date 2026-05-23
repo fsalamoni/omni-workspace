@@ -44,7 +44,7 @@ afterEach(() => {
 
 describe('extensions/statePersistence', () => {
   it('reads and writes extension states from AIONUI_EXTENSION_STATES_FILE when provided', async () => {
-    const sandbox = createTempDir('aionui-state-');
+    const sandbox = createTempDir('salomoneui-state-');
     const statesFile = path.join(sandbox, 'isolated', 'extension-states.json');
     process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 
@@ -81,7 +81,7 @@ describe('extensions/statePersistence', () => {
   });
 
   it('loadPersistedStates returns empty map without warning when file does not exist (ENOENT)', async () => {
-    const sandbox = createTempDir('aionui-enoent-');
+    const sandbox = createTempDir('salomoneui-enoent-');
     const statesFile = path.join(sandbox, 'nonexistent', 'extension-states.json');
     process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 
@@ -97,7 +97,7 @@ describe('extensions/statePersistence', () => {
   });
 
   it('loadPersistedStates warns for non-ENOENT errors', async () => {
-    const sandbox = createTempDir('aionui-bad-json-');
+    const sandbox = createTempDir('salomoneui-bad-json-');
     const statesFile = path.join(sandbox, 'extension-states.json');
     process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 
@@ -116,7 +116,7 @@ describe('extensions/statePersistence', () => {
   });
 
   it('savePersistedStates debounces rapid writes', async () => {
-    const sandbox = createTempDir('aionui-debounce-');
+    const sandbox = createTempDir('salomoneui-debounce-');
     const statesFile = path.join(sandbox, 'extension-states.json');
     process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 
@@ -144,7 +144,7 @@ describe('extensions/statePersistence', () => {
 
   describe('markExtensionForReinstall', () => {
     it('should set installed to false for an existing extension', async () => {
-      const sandbox = createTempDir('aionui-reinstall-');
+      const sandbox = createTempDir('salomoneui-reinstall-');
       const statesFile = path.join(sandbox, 'extension-states.json');
       process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 
@@ -163,7 +163,7 @@ describe('extensions/statePersistence', () => {
     });
 
     it('should be a no-op for an unknown extension', async () => {
-      const sandbox = createTempDir('aionui-reinstall-noop-');
+      const sandbox = createTempDir('salomoneui-reinstall-noop-');
       const statesFile = path.join(sandbox, 'extension-states.json');
       process.env.AIONUI_EXTENSION_STATES_FILE = statesFile;
 

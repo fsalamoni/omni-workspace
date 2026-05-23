@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -39,6 +39,7 @@ import jaJP from '@arco-design/web-react/es/locale/ja-JP';
 import zhCN from '@arco-design/web-react/es/locale/zh-CN';
 import zhTW from '@arco-design/web-react/es/locale/zh-TW';
 import koKR from '@arco-design/web-react/es/locale/ko-KR';
+import ptBR from '@arco-design/web-react/es/locale/pt-BR';
 import { useTranslation } from 'react-i18next';
 
 // Styles
@@ -57,6 +58,7 @@ import Sider from './components/layout/Sider';
 import { useAuth } from './hooks/context/AuthContext';
 import { ConversationHistoryProvider } from './hooks/context/ConversationHistoryContext';
 import HOC from './utils/ui/HOC';
+import { useFirebaseSync } from './hooks/useFirebaseSync';
 
 // Patch Korean locale with missing properties from English locale
 const koKRComplete = {
@@ -83,6 +85,7 @@ const arcoLocales: Record<string, typeof enUS> = {
   'zh-TW': zhTW,
   'ja-JP': jaJP,
   'ko-KR': koKRComplete,
+  'pt-BR': ptBR,
   'en-US': enUS,
 };
 
@@ -108,6 +111,9 @@ const Config: React.FC<PropsWithChildren> = ({ children }) => {
 
 const Main = () => {
   const { ready } = useAuth();
+  
+  // Initialize Firebase sync for conversations and messages
+  useFirebaseSync();
 
   if (!ready) {
     return null;

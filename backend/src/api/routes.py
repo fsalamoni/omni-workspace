@@ -16,7 +16,7 @@ def get_settings_db():
 
 @router.get("/health")
 async def health():
-    return {"status": "ok", "service": "OmniWorkspace Backend"}
+    return {"status": "ok", "service": "SalomoneUI Backend"}
 
 @router.post("/sessions")
 async def create_session(sm: SessionManager = Depends(get_session_manager)):

@@ -5,20 +5,20 @@ import VERSION from './versions/version.json';
 export default ({ config }: ConfigContext): ExpoConfig => {
   return {
     ...config,
-    name: 'AionUi Mobile',
-    slug: 'aionui-mobile',
+    name: 'SalomoneUI Mobile',
+    slug: 'salomoneui-mobile',
     version: VERSION.version,
     orientation: 'portrait',
     icon: './assets/images/icon.png',
-    scheme: 'aionui-mobile',
+    scheme: 'salomoneui-mobile',
     userInterfaceStyle: 'automatic',
     ios: {
       supportsTablet: true,
-      bundleIdentifier: 'ai.resopod.aionui',
+      bundleIdentifier: 'ai.resopod.salomoneui',
       buildNumber: String(VERSION.buildNumber),
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
-        NSCameraUsageDescription: 'AionUi needs camera access to scan QR codes for server login.',
+        NSCameraUsageDescription: 'SalomoneUI needs camera access to scan QR codes for server login.',
       },
     },
     android: {
@@ -26,7 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         foregroundImage: './assets/images/icon.png',
         backgroundColor: '#000000',
       },
-      package: 'ai.resopod.aionui',
+      package: 'ai.resopod.salomoneui',
       versionCode: VERSION.buildNumber,
     },
     web: {

@@ -25,13 +25,13 @@ orchestrator = CentralOrchestrator(settings, llm_router, agent_db, session_manag
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("OmniWorkspace Backend starting up...")
+    print("SalomoneUI Backend starting up...")
     await settings_db.init_db()
     websocket.setup_orchestrator(orchestrator)
     yield
     print("Shutting down...")
 
-app = FastAPI(title="OmniWorkspace API", lifespan=lifespan)
+app = FastAPI(title="SalomoneUI API", lifespan=lifespan)
 app.state.settings_db = settings_db
 
 app.add_middleware(

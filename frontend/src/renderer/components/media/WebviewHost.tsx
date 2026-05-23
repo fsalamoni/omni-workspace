@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -264,8 +264,8 @@ const WebviewHost: React.FC<WebviewHostProps> = ({
           .executeJavaScript(
             `
           (function() {
-            if (window.__aionuiZoomInjected) return true;
-            window.__aionuiZoomInjected = true;
+            if (window.__salomoneuiZoomInjected) return true;
+            window.__salomoneuiZoomInjected = true;
             window.addEventListener('wheel', function(e) {
               if (!(e.ctrlKey || e.metaKey)) return;
               e.preventDefault();

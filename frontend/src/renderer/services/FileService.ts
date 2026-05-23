@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -153,15 +153,15 @@ export function getFileExtension(fileName: string): string {
 
 import { AIONUI_TIMESTAMP_REGEX } from '@/common/config/constants';
 
-// 清理AionUI时间戳后缀，返回原始文件名
-export function cleanAionUITimestamp(fileName: string): string {
+// 清理SalomoneUI时间戳后缀，返回原始文件名
+export function cleanSalomoneUITimestamp(fileName: string): string {
   return fileName.replace(AIONUI_TIMESTAMP_REGEX, '$1');
 }
 
 // 从文件路径获取清理后的文件名（用于UI显示）
 export function getCleanFileName(filePath: string): string {
   const fileName = filePath.split(/[\\/]/).pop() || '';
-  return cleanAionUITimestamp(fileName);
+  return cleanSalomoneUITimestamp(fileName);
 }
 
 // 从文件路径数组获取清理后的文件名数组（用于消息格式化）

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,7 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 function createSandbox(): string {
-  return fs.mkdtempSync(path.join(os.tmpdir(), 'aionui-analytics-test-'));
+  return fs.mkdtempSync(path.join(os.tmpdir(), 'salomoneui-analytics-test-'));
 }
 
 function removeSandbox(dir: string): void {

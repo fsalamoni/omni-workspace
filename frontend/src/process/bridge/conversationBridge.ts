@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -65,7 +65,7 @@ export function initConversationBridge(
     ipcBridge.conversation.listChanged.emit({
       conversationId: conversation.id,
       action,
-      source: conversation.source || 'aionui',
+      source: conversation.source || 'salomoneui',
     });
   };
 
@@ -137,7 +137,7 @@ export function initConversationBridge(
           : params;
       const conversation = await conversationService.createConversation({
         ...createParams,
-        source: 'aionui',
+        source: 'salomoneui',
       } as CreateConversationParams);
 
       // Discover and persist loaded skills snapshot at creation time
@@ -270,9 +270,9 @@ export function initConversationBridge(
       // Kill the running task if exists
       workerTaskManager.kill(id);
 
-      // If source is not 'aionui' (e.g., telegram), cleanup channel resources
-      // 如果来源不是 aionui（如 telegram），需要清理 channel 相关资源
-      if (source && source !== 'aionui') {
+      // If source is not 'salomoneui' (e.g., telegram), cleanup channel resources
+      // 如果来源不是 salomoneui（如 telegram），需要清理 channel 相关资源
+      if (source && source !== 'salomoneui') {
         try {
           // Dynamic import to avoid circular dependency
           const { getChannelManager } = await import('@process/channels/core/ChannelManager');

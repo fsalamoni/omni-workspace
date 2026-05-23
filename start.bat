@@ -1,11 +1,11 @@
 @echo off
 echo ====================================================
-echo    Iniciando OmniWorkspace (Powered by AionUI)
+echo    Iniciando SalomoneUI (Powered by SalomoneUI)
 echo ====================================================
 
 echo [1/2] Iniciando Servidor Python MCP em background...
-start /B "" "D:\SalomoneWorkspace\omni-workspace\backend\.venv\Scripts\python.exe" "d:\SalomoneWorkspace\omni-workspace\backend\src\mcp_server.py"
+start /B "" "D:\SalomoneWorkspace\salomoneui\backend\.venv\Scripts\python.exe" "d:\SalomoneWorkspace\salomoneui\backend\src\mcp_server.py"
 
-echo [2/2] Iniciando AionUI WebUI...
+echo [2/2] Iniciando SalomoneUI WebUI...
 cd frontend
 bun run server:start

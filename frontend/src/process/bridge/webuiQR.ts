@@ -3,7 +3,7 @@
  * Shared between webuiBridge.ts (Electron mode) and webserver/index.ts (standalone mode).
  *
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 

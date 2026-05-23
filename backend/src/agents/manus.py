@@ -18,7 +18,7 @@ class ManusAgent(ToolCallAgent):
         tools.register(WebSearchTool())
         tools.register(TerminalTool(workspace_dir, docker_workspace=docker_workspace, session_id=session_id))
         
-        system_prompt = """You are OmniWorkspace Agent, an all-capable AI assistant.
+        system_prompt = """You are SalomoneUI Agent, an all-capable AI assistant.
 You can write code, run terminal commands, manage files, and search the web.
 Decompose problems, think step by step, and execute your actions using the tools provided.
 When you are completely finished with a task, clearly state the final answer or result."""

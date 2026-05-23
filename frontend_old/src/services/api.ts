@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — REST API Client
+   SalomoneUI — REST API Client
    ───────────────────────────────────────────── */
 
 import type { ApiKeyConfig, MCPServer, Session } from '@/types';

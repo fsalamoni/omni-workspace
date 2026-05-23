@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  *
  * Standalone stdio MCP server for Aion team-guide tools.
@@ -81,7 +81,7 @@ function createAionTool(
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 
-const server = new McpServer({ name: 'aionui-team-guide', version: '1.0.0' }, { capabilities: { tools: {} } });
+const server = new McpServer({ name: 'salomoneui-team-guide', version: '1.0.0' }, { capabilities: { tools: {} } });
 
 // ---- aion_create_team ----
 createAionTool(

@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — useSocket Hook
+   SalomoneUI — useSocket Hook
    ───────────────────────────────────────────── */
 
 import { useCallback, useEffect, useRef, useState } from 'react';

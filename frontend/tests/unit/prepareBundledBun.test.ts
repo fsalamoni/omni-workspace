@@ -63,7 +63,7 @@ describe('prepareBundledBun', () => {
   });
 
   function setupCacheAndBackup(version: string) {
-    tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'aionui-bun-test-'));
+    tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'salomoneui-bun-test-'));
 
     targetExisted = fs.existsSync(targetDir);
     if (targetExisted) {

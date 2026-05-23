@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — Shared Type Definitions
+   SalomoneUI — Shared Type Definitions
    ───────────────────────────────────────────── */
 
 export type EventType =

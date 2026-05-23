@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -382,8 +382,8 @@ export function initFsBridge(): void {
           targetUrl,
           {
             headers: {
-              'User-Agent': 'AionUI-Preview',
-              Referer: 'https://github.com/iOfficeAI/AionUi',
+              'User-Agent': 'SalomoneUI-Preview',
+              Referer: 'https://github.com/iOfficeAI/SalomoneUI',
             },
           },
           (response) => {
@@ -1754,11 +1754,11 @@ export function initFsBridge(): void {
     }
   });
 
-  // Skills Market: inject the aionui-skills builtin skill
+  // Skills Market: inject the salomoneui-skills builtin skill
   ipcBridge.fs.enableSkillsMarket.provider(async () => {
     try {
       const { getAutoSkillsDir } = await import('@process/utils/initStorage');
-      const skillDir = path.join(getAutoSkillsDir(), 'aionui-skills');
+      const skillDir = path.join(getAutoSkillsDir(), 'salomoneui-skills');
       await fs.mkdir(skillDir, { recursive: true });
 
       // Copy the bundled SKILL.md (concise entry-point version)
@@ -1780,11 +1780,11 @@ export function initFsBridge(): void {
     }
   });
 
-  // Skills Market: remove the aionui-skills builtin skill
+  // Skills Market: remove the salomoneui-skills builtin skill
   ipcBridge.fs.disableSkillsMarket.provider(async () => {
     try {
       const { getAutoSkillsDir } = await import('@process/utils/initStorage');
-      const skillDir = path.join(getAutoSkillsDir(), 'aionui-skills');
+      const skillDir = path.join(getAutoSkillsDir(), 'salomoneui-skills');
       await fs.rm(skillDir, { recursive: true, force: true });
 
       // Reset AcpSkillManager singleton so it re-discovers builtin skills
@@ -1803,7 +1803,7 @@ export function initFsBridge(): void {
 }
 
 /**
- * Read the bundled SKILL.md for aionui-skills from app resources.
+ * Read the bundled SKILL.md for salomoneui-skills from app resources.
  *
  * This is a concise entry-point version (~30 lines) that tells agents
  * to fetch the full API documentation via curl at runtime.
@@ -1812,10 +1812,10 @@ export function initFsBridge(): void {
  */
 async function readBundledSkillsMarketMd(): Promise<string> {
   try {
-    const fallbackPath = path.join(getBuiltinSkillsCopyDir(), 'aionui-skills', 'SKILL.md');
+    const fallbackPath = path.join(getBuiltinSkillsCopyDir(), 'salomoneui-skills', 'SKILL.md');
     return await fs.readFile(fallbackPath, 'utf-8');
   } catch (error) {
-    console.warn('[fsBridge] Failed to read bundled aionui-skills SKILL.md:', error);
-    return `---\nname: aionui-skills\ndescription: "Access the AionUI Skills registry — discover and download AI agent skills."\n---\n\n# AionUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/aionui-skills\ncurl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
+    console.warn('[fsBridge] Failed to read bundled salomoneui-skills SKILL.md:', error);
+    return `---\nname: salomoneui-skills\ndescription: "Access the SalomoneUI Skills registry — discover and download AI agent skills."\n---\n\n# SalomoneUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/salomoneui-skills\ncurl -s https://skills.salomoneui.com/SKILL.md > ~/.config/salomoneui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
   }
 }

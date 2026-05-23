@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,7 +9,7 @@ import { WEBUI_DEFAULT_PORT } from '@/common/config/constants';
 
 // CSRF token cookie/header identifiers (shared by server & WebUI)
 // CSRF Token 的 Cookie / Header 名称（服务端与 WebUI 共享）
-export const CSRF_COOKIE_NAME = 'aionui-csrf-token';
+export const CSRF_COOKIE_NAME = 'salomoneui-csrf-token';
 export const CSRF_HEADER_NAME = 'x-csrf-token';
 /**
  * 集中配置管理
@@ -51,7 +51,7 @@ export const AUTH_CONFIG = {
   // Cookie 配置（Cookie configuration）
   COOKIE: {
     // Cookie 名称（Cookie name）
-    NAME: 'aionui-session' as const,
+    NAME: 'salomoneui-session' as const,
     OPTIONS: {
       // 仅允许 HTTP 访问 Cookie（httpOnly flag）
       httpOnly: true,

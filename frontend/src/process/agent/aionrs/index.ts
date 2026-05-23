@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -337,7 +337,7 @@ export class AionrsAgent {
   }
 
   /**
-   * Map aionrs tool_request to AionUi confirmation details format.
+   * Map aionrs tool_request to SalomoneUI confirmation details format.
    */
   private mapConfirmationDetails(event: AionrsEvent & { type: 'tool_request' }) {
     const { tool } = event;

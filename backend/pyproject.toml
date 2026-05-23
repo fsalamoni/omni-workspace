@@ -1,7 +1,7 @@
 [project]
-name = "omni-workspace-backend"
+name = "salomoneui-backend"
 version = "0.1.0"
-description = "OmniWorkspace — Multi-Agent Orchestration Platform Backend"
+description = "SalomoneUI — Multi-Agent Orchestration Platform Backend"
 requires-python = ">=3.12"
 readme = "README.md"
 license = { text = "MIT" }

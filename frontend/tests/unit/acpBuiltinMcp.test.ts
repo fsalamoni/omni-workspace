@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -14,7 +14,7 @@ describe('ACP built-in MCP session config', () => {
     const servers: IMcpServer[] = [
       {
         id: 'builtin-image-gen',
-        name: 'aionui-image-generation',
+        name: 'salomoneui-image-generation',
         enabled: true,
         builtin: true,
         status: 'connected',
@@ -94,7 +94,7 @@ describe('ACP built-in MCP session config', () => {
     expect(result).toEqual([
       {
         type: 'stdio',
-        name: 'aionui-image-generation',
+        name: 'salomoneui-image-generation',
         command: 'node',
         args: ['/abs/builtin-mcp-image-gen.js'],
         env: [

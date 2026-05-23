@@ -8,7 +8,7 @@ import fs from 'fs';
 
 let mockStartFn = vi.fn();
 
-const TEST_DATA_DIR = path.join(os.tmpdir(), 'aionui-test-weixin');
+const TEST_DATA_DIR = path.join(os.tmpdir(), 'salomoneui-test-weixin');
 
 async function loadPluginClass() {
   vi.resetModules();

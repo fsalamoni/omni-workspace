@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -188,11 +188,11 @@ const UpdateModal: React.FC = () => {
 
   useEffect(() => {
     const removeOpenListener = ipcBridge.update.open.on(handleOpenUpdateModal);
-    window.addEventListener('aionui-open-update-modal', handleOpenUpdateModal);
+    window.addEventListener('salomoneui-open-update-modal', handleOpenUpdateModal);
 
     return () => {
       removeOpenListener();
-      window.removeEventListener('aionui-open-update-modal', handleOpenUpdateModal);
+      window.removeEventListener('salomoneui-open-update-modal', handleOpenUpdateModal);
     };
   }, []);
 

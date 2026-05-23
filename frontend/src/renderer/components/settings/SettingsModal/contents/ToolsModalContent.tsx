@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -37,7 +37,7 @@ import { useSettingsViewMode } from '../settingsViewContext';
 type MessageInstance = ReturnType<typeof Message.useMessage>[0];
 
 const isBuiltinImageGenServer = (server: IMcpServer) => server.builtin === true && server.id === BUILTIN_IMAGE_GEN_ID;
-const SPEECH_TO_TEXT_CONFIG_CHANGED_EVENT = 'aionui:speech-to-text-config-changed';
+const SPEECH_TO_TEXT_CONFIG_CHANGED_EVENT = 'salomoneui:speech-to-text-config-changed';
 const DEFAULT_SPEECH_TO_TEXT_CONFIG: SpeechToTextConfig = {
   enabled: false,
   provider: 'openai',
@@ -831,7 +831,7 @@ const ToolsModalContent: React.FC = () => {
                         <div>
                           {t('settings.needHelpTooltip')}
                           <a
-                            href='https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide'
+                            href='https://github.com/iOfficeAI/SalomoneUI/wiki/SalomoneUI-Image-Generation-Tool-Model-Configuration-Guide'
                             target='_blank'
                             rel='noopener noreferrer'
                             className='text-[rgb(var(--primary-6))] hover:text-[rgb(var(--primary-5))] underline ml-4px'
@@ -843,7 +843,7 @@ const ToolsModalContent: React.FC = () => {
                       }
                     >
                       <a
-                        href='https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide'
+                        href='https://github.com/iOfficeAI/SalomoneUI/wiki/SalomoneUI-Image-Generation-Tool-Model-Configuration-Guide'
                         target='_blank'
                         rel='noopener noreferrer'
                         className='ml-8px text-[rgb(var(--primary-6))] hover:text-[rgb(var(--primary-5))] cursor-pointer'

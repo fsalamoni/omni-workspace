@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -543,7 +543,7 @@ export class GeminiAgent {
    * Handle message stream with resilience monitoring
    *
    * InvalidStream retry is handled by aioncli-core (geminiChat.ts streamWithRetries
-   * + client.ts "Please continue." mechanism). AionUi does NOT retry at this layer
+   * + client.ts "Please continue." mechanism). SalomoneUI does NOT retry at this layer
    * to avoid redundant classifier-router calls and quota amplification.
    */
   private handleMessage(

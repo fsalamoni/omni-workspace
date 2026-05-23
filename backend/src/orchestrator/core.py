@@ -6,7 +6,7 @@ from .event_stream import MessageEvent, ActionEvent, ObservationEvent
 from ..planning.planner import PlanningFlow
 
 class CentralOrchestrator:
-    """The brain of OmniWorkspace. Connects UI requests to agents and tools."""
+    """The brain of SalomoneUI. Connects UI requests to agents and tools."""
     
     def __init__(self, settings: Any, llm_router: Any, memory: Any, session_manager: SessionManager, settings_db: Any = None, docker_workspace: Any = None):
         self.settings = settings

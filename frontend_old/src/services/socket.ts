@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — Socket.IO Client
+   SalomoneUI — Socket.IO Client
    ───────────────────────────────────────────── */
 
 import { io, type Socket } from 'socket.io-client';

@@ -51,15 +51,15 @@ function getCacheRootDir() {
 
   if (process.platform === 'win32') {
     const localAppData = process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local');
-    return path.join(localAppData, 'AionUi', 'cache', 'bundled-bun');
+    return path.join(localAppData, 'SalomoneUI', 'cache', 'bundled-bun');
   }
 
   if (process.platform === 'darwin') {
-    return path.join(os.homedir(), 'Library', 'Caches', 'AionUi', 'bundled-bun');
+    return path.join(os.homedir(), 'Library', 'Caches', 'SalomoneUI', 'bundled-bun');
   }
 
   const xdgCacheHome = process.env.XDG_CACHE_HOME || path.join(os.homedir(), '.cache');
-  return path.join(xdgCacheHome, 'AionUi', 'bundled-bun');
+  return path.join(xdgCacheHome, 'SalomoneUI', 'bundled-bun');
 }
 
 function getPlatformAsset(platform, arch, variant = 'default') {
@@ -230,7 +230,7 @@ function downloadRuntimeIntoCache(cacheRuntimeDir, platform, arch, version, vari
   }
 
   const downloadUrl = getDownloadUrl(assetName, version);
-  const tempRoot = path.join(os.tmpdir(), 'aionui-bundled-bun', version, `${platform}-${arch}-${variant}`);
+  const tempRoot = path.join(os.tmpdir(), 'salomoneui-bundled-bun', version, `${platform}-${arch}-${variant}`);
   const tempZipPath = path.join(tempRoot, assetName);
   const extractedDir = path.join(tempRoot, 'extracted');
 

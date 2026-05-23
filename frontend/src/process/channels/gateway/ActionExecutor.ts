@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -828,7 +828,7 @@ export class ActionExecutor {
         // Use actual content of last message, add action buttons (based on platform)
         const responseMarkup = getResponseActionsMarkup(context.platform as PluginType, finalVisibleText);
         const finalReplyMarkup =
-          responseMarkup ?? (context.platform === 'wecom' ? ({ __aionuiFinal: true } as unknown) : undefined);
+          responseMarkup ?? (context.platform === 'wecom' ? ({ __salomoneuiFinal: true } as unknown) : undefined);
         const finalMessage: IUnifiedOutgoingMessage = lastMessageContent
           ? {
               ...lastMessageContent,

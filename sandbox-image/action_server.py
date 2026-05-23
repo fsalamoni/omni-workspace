@@ -1,5 +1,5 @@
 """
-OmniWorkspace Sandbox Action Server
+SalomoneUI Sandbox Action Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Lightweight FastAPI server running INSIDE each sandbox container.
 Receives execution commands from the orchestrator and returns results.
@@ -23,7 +23,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 
-app = FastAPI(title="OmniWorkspace Sandbox Action Server", version="0.1.0")
+app = FastAPI(title="SalomoneUI Sandbox Action Server", version="0.1.0")
 
 
 # ── Models ────────────────────────────────────────────────────

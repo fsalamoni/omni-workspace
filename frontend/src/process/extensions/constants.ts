@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -73,7 +73,7 @@ export type ExtensionScanSource = { dir: string; source: ExtensionSource };
  *
  * Priority order:
  *   1. Environment variable (`AIONUI_EXTENSIONS_PATH`) — highest
- *   2. User data dir (`~/.aionui/extensions`)
+ *   2. User data dir (`~/.salomoneui/extensions`)
  *   3. Electron appData dir
  *
  * E2E test mode (`AIONUI_E2E_TEST=1`) only scans env dirs for hermetic runs.

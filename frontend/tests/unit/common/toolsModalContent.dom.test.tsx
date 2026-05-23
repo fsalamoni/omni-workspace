@@ -42,7 +42,7 @@ const testState = vi.hoisted(() => ({
   BUILTIN_IMAGE_GEN_ID: 'builtin-image-gen',
   initialBuiltinServer: (): MockServer => ({
     id: 'builtin-image-gen',
-    name: 'aionui-image-generation',
+    name: 'salomoneui-image-generation',
     builtin: true,
     enabled: false,
     updatedAt: 1,
@@ -341,7 +341,7 @@ describe('ToolsModalContent image generation status refresh', () => {
     await waitFor(() => {
       expect(testState.mockCheckSingleServerInstallStatus).toHaveBeenCalledOnce();
     });
-    expect(testState.mockCheckSingleServerInstallStatus).toHaveBeenCalledWith('aionui-image-generation');
+    expect(testState.mockCheckSingleServerInstallStatus).toHaveBeenCalledWith('salomoneui-image-generation');
   });
 
   it('persists speech-to-text provider settings when the user switches provider and updates credentials', async () => {

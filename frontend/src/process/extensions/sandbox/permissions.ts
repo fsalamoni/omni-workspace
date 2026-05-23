@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -48,7 +48,7 @@ export const FilesystemPermissionSchema = z.enum([
 
 export const ExtPermissionsSchema = z
   .object({
-    /** Read/write to AionUI persistent storage */
+    /** Read/write to SalomoneUI persistent storage */
     storage: z.boolean().default(false),
     /** Network access control */
     network: NetworkPermissionSchema.default(false),

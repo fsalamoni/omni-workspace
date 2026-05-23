@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -56,7 +56,7 @@ interface DingTalkConfigFormProps {
   onStatusChange: (status: IChannelPluginStatus | null) => void;
 }
 
-const DINGTALK_DEV_DOCS_URL = 'https://github.com/iOfficeAI/AionUi/wiki/DingTalk-Bot-Setup-Guide';
+const DINGTALK_DEV_DOCS_URL = 'https://github.com/iOfficeAI/SalomoneUI/wiki/DingTalk-Bot-Setup-Guide';
 
 const DingTalkConfigForm: React.FC<DingTalkConfigFormProps> = ({ pluginStatus, modelSelection, onStatusChange }) => {
   const { t } = useTranslation();

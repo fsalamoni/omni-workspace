@@ -120,7 +120,7 @@ flowchart LR
 
 | 权限         | 值                   | 风险等级  | 说明                                      |
 | ------------ | -------------------- | --------- | ----------------------------------------- |
-| `storage`    | `true`               | safe      | 读写 AionUI 持久化存储                    |
+| `storage`    | `true`               | safe      | 读写 SalomoneUI 持久化存储                    |
 | `events`     | `true`               | safe      | 跨扩展事件通信                            |
 | `network`    | `false`              | safe      | 无网络访问                                |
 | `network`    | `{ allowedDomains }` | moderate  | 受限域名列表 (支持 `*.github.com` 通配符) |
@@ -140,7 +140,7 @@ flowchart LR
 
 **状态: 消息通道已修复, 隔离未完成, 未接入**
 
-> 消息路由修复详情见 [sandbox-architecture.md](sandbox-architecture.md) 和 PR [#1991](https://github.com/iOfficeAI/AionUi/pull/1991)。
+> 消息路由修复详情见 [sandbox-architecture.md](sandbox-architecture.md) 和 PR [#1991](https://github.com/iOfficeAI/SalomoneUI/pull/1991)。
 
 ```mermaid
 flowchart TD

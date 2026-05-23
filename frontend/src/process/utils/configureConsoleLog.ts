@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,9 +10,9 @@
  * daily log files on disk.
  *
  * Log file location (managed by electron-log):
- *   - macOS:   ~/Library/Logs/AionUi/YYYY-MM-DD.log
- *   - Windows: %USERPROFILE%\AppData\Roaming\AionUi\logs\YYYY-MM-DD.log
- *   - Linux:   ~/.config/AionUi/logs/YYYY-MM-DD.log
+ *   - macOS:   ~/Library/Logs/SalomoneUI/YYYY-MM-DD.log
+ *   - Windows: %USERPROFILE%\AppData\Roaming\SalomoneUI\logs\YYYY-MM-DD.log
+ *   - Linux:   ~/.config/SalomoneUI/logs/YYYY-MM-DD.log
  *
  * Users can share the relevant date's file for debugging (#1157).
  *

@@ -1,2 +1,2 @@
-# OmniWorkspace Backend
-This is the backend for OmniWorkspace.
+# SalomoneUI Backend
+This is the backend for SalomoneUI.

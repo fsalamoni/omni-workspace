@@ -15,7 +15,7 @@ async def handle_request(req: Dict[str, Any]) -> Dict[str, Any]:
                 "tools": {}
             },
             "serverInfo": {
-                "name": "omni-workspace-agents",
+                "name": "salomoneui-agents",
                 "version": "1.0.0"
             }
         }
@@ -24,7 +24,7 @@ async def handle_request(req: Dict[str, Any]) -> Dict[str, Any]:
             "tools": [
                 {
                     "name": "manus_agent",
-                    "description": "General Purpose Execution Agent (OmniWorkspace)",
+                    "description": "General Purpose Execution Agent (SalomoneUI)",
                     "inputSchema": {
                         "type": "object",
                         "properties": {
@@ -35,7 +35,7 @@ async def handle_request(req: Dict[str, Any]) -> Dict[str, Any]:
                 },
                 {
                     "name": "browser_agent",
-                    "description": "Playwright Browser Agent (OmniWorkspace)",
+                    "description": "Playwright Browser Agent (SalomoneUI)",
                     "inputSchema": {
                         "type": "object",
                         "properties": {
@@ -58,7 +58,7 @@ async def handle_request(req: Dict[str, Any]) -> Dict[str, Any]:
             "content": [
                 {
                     "type": "text",
-                    "text": f"Agent {tool_name} completed task: {prompt}\n\n[OmniWorkspace Backend Executed]"
+                    "text": f"Agent {tool_name} completed task: {prompt}\n\n[SalomoneUI Backend Executed]"
                 }
             ]
         }

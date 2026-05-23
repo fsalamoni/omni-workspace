@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,9 +10,9 @@ import { isOpenAIHost } from '@/common/utils/urlValidation';
 type AionrsProvider = 'anthropic' | 'openai' | 'bedrock' | 'vertex';
 
 /**
- * Map AionUi platform name to aionrs provider name.
+ * Map SalomoneUI platform name to aionrs provider name.
  *
- * AionUi PlatformType values: 'custom' | 'new-api' | 'gemini' | 'gemini-vertex-ai' | 'anthropic' | 'bedrock'
+ * SalomoneUI PlatformType values: 'custom' | 'new-api' | 'gemini' | 'gemini-vertex-ai' | 'anthropic' | 'bedrock'
  */
 function mapProvider(model: TProviderWithModel): AionrsProvider {
   // Special handling for new-api: respect per-model protocol setting

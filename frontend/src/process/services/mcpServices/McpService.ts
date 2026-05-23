@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -22,7 +22,7 @@ import type { IMcpProtocol, DetectedMcpServer, McpConnectionTestResult, McpSyncR
  *
  * Agent 类型说明：
  * - AcpBackend ('claude', 'qwen', 'gemini', 'codex'等): 支持的 ACP 后端
- * - 'aionui': @office-ai/aioncli-core (AionUi 本地管理的 Gemini 实现)
+ * - 'salomoneui': @office-ai/aioncli-core (SalomoneUI 本地管理的 Gemini 实现)
  */
 export class McpService {
   private agents: Map<McpSource, IMcpProtocol>;
@@ -86,7 +86,7 @@ export class McpService {
       ['codebuddy', new CodebuddyMcpAgent()],
       ['qwen', new QwenMcpAgent()],
       ['gemini', new GeminiMcpAgent()],
-      ['aionui', new AionuiMcpAgent()], // AionUi 本地 @office-ai/aioncli-core
+      ['salomoneui', new AionuiMcpAgent()], // SalomoneUI 本地 @office-ai/aioncli-core
       ['codex', new CodexMcpAgent()],
       ['opencode', new OpencodeMcpAgent()],
       ['aionrs', new AionrsMcpAgent()], // Aion CLI (Rust binary, TOML config)
@@ -113,7 +113,7 @@ export class McpService {
     // Fork Gemini 使用 AionuiMcpAgent 管理 MCP 配置
     // Fork Gemini uses AionuiMcpAgent to manage MCP config
     if (agent.backend === 'gemini' && !agent.cliPath) {
-      return this.agents.get('aionui');
+      return this.agents.get('salomoneui');
     }
     return this.agents.get(agent.backend as McpSource);
   }

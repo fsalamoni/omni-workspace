@@ -14,7 +14,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """Central configuration for the OmniWorkspace backend."""
+    """Central configuration for the SalomoneUI backend."""
 
     model_config = SettingsConfigDict(
         env_file=".env",

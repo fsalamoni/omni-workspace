@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -742,7 +742,7 @@ const WebuiModalContent: React.FC = () => {
                   className='text-primary hover:underline cursor-pointer bg-transparent border-none p-0 text-12px'
                   onClick={() =>
                     shell.openExternal
-                      .invoke('https://github.com/iOfficeAI/AionUi/wiki/Remote-Internet-Access-Guide')
+                      .invoke('https://github.com/iOfficeAI/SalomoneUI/wiki/Remote-Internet-Access-Guide')
                       .catch(console.error)
                   }
                 >

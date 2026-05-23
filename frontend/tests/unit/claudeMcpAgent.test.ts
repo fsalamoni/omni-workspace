@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,7 +12,7 @@ describe('ClaudeMcpAgent helpers', () => {
   it('builds stdio MCP JSON config including env vars', () => {
     const server: IMcpServer = {
       id: 'builtin-image-gen',
-      name: 'aionui-image-generation',
+      name: 'salomoneui-image-generation',
       enabled: true,
       transport: {
         type: 'stdio',

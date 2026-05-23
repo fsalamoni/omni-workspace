@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — Plan Store (Zustand)
+   SalomoneUI — Plan Store (Zustand)
    ───────────────────────────────────────────── */
 
 import { create } from 'zustand';

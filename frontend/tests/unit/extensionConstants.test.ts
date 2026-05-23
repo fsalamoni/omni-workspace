@@ -15,7 +15,7 @@ vi.mock('@/common/platform', () => ({
 }));
 
 vi.mock('@process/utils', () => ({
-  getDataPath: () => '/home/user/.aionui-dev',
+  getDataPath: () => '/home/user/.salomoneui-dev',
 }));
 
 // Must import after mocks
@@ -92,7 +92,7 @@ describe('extension constants', () => {
 
   describe('getUserExtensionsDir', () => {
     it('should return data path + extensions', () => {
-      expect(getUserExtensionsDir()).toBe(path.join('/home/user/.aionui-dev', 'extensions'));
+      expect(getUserExtensionsDir()).toBe(path.join('/home/user/.salomoneui-dev', 'extensions'));
     });
   });
 
@@ -152,12 +152,12 @@ describe('extension constants', () => {
     it('should return process resources path in packaged mode', () => {
       mocks.isPackaged.mockReturnValue(true);
       Object.defineProperty(process, 'resourcesPath', {
-        value: '/opt/AionUi/resources',
+        value: '/opt/SalomoneUI/resources',
         configurable: true,
         writable: true,
       });
 
-      expect(getHubResourcesDir()).toBe(path.join('/opt/AionUi/resources', 'hub'));
+      expect(getHubResourcesDir()).toBe(path.join('/opt/SalomoneUI/resources', 'hub'));
     });
   });
 

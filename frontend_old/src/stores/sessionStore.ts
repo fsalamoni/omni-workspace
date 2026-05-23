@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   OmniWorkspace — Session Store (Zustand)
+   SalomoneUI — Session Store (Zustand)
    ───────────────────────────────────────────── */
 
 import { create } from 'zustand';

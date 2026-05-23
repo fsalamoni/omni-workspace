@@ -52,10 +52,10 @@
   },
   "page": {
     "newTask": "Nova tarefa",
-    "description": "Execute tarefas em um agendamento. Você também pode pedir ao AionUi em qualquer conversa para criar uma para você.",
+    "description": "Execute tarefas em um agendamento. Você também pode pedir ao SalomoneUI em qualquer conversa para criar uma para você.",
     "awakeBanner": "Tarefas agendadas só são executadas enquanto o computador está ligado.",
     "keepAwake": "Manter ativo",
-    "keepAwakeTooltip": "Quando ativado, o AionUi impedirá que o seu computador entre em suspensão",
+    "keepAwakeTooltip": "Quando ativado, o SalomoneUI impedirá que o seu computador entre em suspensão",
     "createTask": "Criar Tarefa Agendada",
     "editTask": "Editar Tarefa Agendada",
     "createSuccess": "Tarefa criada com sucesso",

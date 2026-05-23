@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -67,13 +67,13 @@ if (isWebUI || isResetPassword) {
 //
 // Multi-instance support: a file-based registry tracks all active instances
 // so each one gets a unique port and MCP tools can discover them all.
-// Registry file: ~/.aionui-cdp-registry.json
+// Registry file: ~/.salomoneui-cdp-registry.json
 // ---------------------------------------------------------------------------
 
 export const DEFAULT_CDP_PORT = 9230;
 export const CDP_PORT_RANGE_START = 9230;
 export const CDP_PORT_RANGE_END = 9250;
-const CDP_REGISTRY_FILE = path.join(os.homedir(), '.aionui-cdp-registry.json');
+const CDP_REGISTRY_FILE = path.join(os.homedir(), '.salomoneui-cdp-registry.json');
 const CDP_CONFIG_FILE = 'cdp.config.json';
 
 /** CDP configuration stored in userData directory */
@@ -160,7 +160,7 @@ function findAvailablePort(preferredPort: number): number {
   }
 
   console.log(
-    `[CDP] Port ${preferredPort} is occupied by another AionUi instance, scanning range ${CDP_PORT_RANGE_START}-${CDP_PORT_RANGE_END}`
+    `[CDP] Port ${preferredPort} is occupied by another SalomoneUI instance, scanning range ${CDP_PORT_RANGE_START}-${CDP_PORT_RANGE_END}`
   );
 
   for (let p = CDP_PORT_RANGE_START; p <= CDP_PORT_RANGE_END; p++) {
@@ -171,7 +171,7 @@ function findAvailablePort(preferredPort: number): number {
   }
 
   console.warn(
-    `[CDP] All ports in range ${CDP_PORT_RANGE_START}-${CDP_PORT_RANGE_END} are used by active AionUi instances, trying ${preferredPort}`
+    `[CDP] All ports in range ${CDP_PORT_RANGE_START}-${CDP_PORT_RANGE_END} are used by active SalomoneUI instances, trying ${preferredPort}`
   );
   return preferredPort;
 }

@@ -1,4 +1,4 @@
-# AionUi Docs
+# SalomoneUI Docs
 
 Documentation is organized by reader intent, not by document type.
 

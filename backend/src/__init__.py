@@ -1,1 +1,1 @@
-"""OmniWorkspace Backend — Multi-Agent Orchestration Platform."""
+"""SalomoneUI Backend — Multi-Agent Orchestration Platform."""

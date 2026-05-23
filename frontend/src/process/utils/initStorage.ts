@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 SalomoneUI (salomoneui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -45,10 +45,10 @@ type ArchitectureType = 'x64' | 'arm64' | 'ia32' | 'arm';
 const nodePath = path;
 
 const STORAGE_PATH = {
-  config: 'aionui-config.txt',
-  chatMessage: 'aionui-chat-message.txt',
-  chat: 'aionui-chat.txt',
-  env: '.aionui-env',
+  config: 'salomoneui-config.txt',
+  chatMessage: 'salomoneui-chat-message.txt',
+  chat: 'salomoneui-chat.txt',
+  env: '.salomoneui-env',
   assistants: 'assistants',
   skills: 'skills',
   builtinSkills: 'builtin-skills',
@@ -76,7 +76,7 @@ const migrateLegacyData = async () => {
         try {
           return existsSync(newDir) && readdirSync(newDir).length === 0;
         } catch (error) {
-          console.warn('[AionUi] Warning: Could not read new directory during migration check:', error);
+          console.warn('[SalomoneUI] Warning: Could not read new directory during migration check:', error);
           return false; // 假设非空以避免迁移覆盖
         }
       })();
@@ -97,7 +97,7 @@ const migrateLegacyData = async () => {
           try {
             await fs.rm(oldDir, { recursive: true });
           } catch (cleanupError) {
-            console.warn('[AionUi] 原目录清理失败，请手动删除:', oldDir, cleanupError);
+            console.warn('[SalomoneUI] 原目录清理失败，请手动删除:', oldDir, cleanupError);
           }
         }
       }
@@ -105,7 +105,7 @@ const migrateLegacyData = async () => {
       return true;
     }
   } catch (error) {
-    console.error('[AionUi] 数据迁移失败:', error);
+    console.error('[SalomoneUI] 数据迁移失败:', error);
   }
 
   return false;
@@ -242,7 +242,7 @@ const JsonFileBuilder = <S extends object = Record<string, unknown>>(filePath: s
 
 const envFile = JsonFileBuilder<IEnvStorageRefer>(path.join(getHomePage(), STORAGE_PATH.env));
 
-const dirConfig = envFile.getSync('aionui.dir');
+const dirConfig = envFile.getSync('salomoneui.dir');
 
 const cacheDir = dirConfig?.cacheDir || getHomePage();
 
@@ -293,11 +293,11 @@ const chatFile = {
 };
 
 const buildMessageListStorage = (conversation_id: string, dir: string) => {
-  const fullName = path.join(dir, 'aionui-chat-history', conversation_id + '.txt');
+  const fullName = path.join(dir, 'salomoneui-chat-history', conversation_id + '.txt');
   if (!existsSync(fullName)) {
-    mkdirSync(path.join(dir, 'aionui-chat-history'));
+    mkdirSync(path.join(dir, 'salomoneui-chat-history'));
   }
-  return JsonFileBuilder<TMessage[]>(path.join(dir, 'aionui-chat-history', conversation_id + '.txt'));
+  return JsonFileBuilder<TMessage[]>(path.join(dir, 'salomoneui-chat-history', conversation_id + '.txt'));
 };
 
 const conversationHistoryProxy = (options: typeof _chatMessageFile, dir: string) => {
@@ -318,7 +318,7 @@ const conversationHistoryProxy = (options: typeof _chatMessageFile, dir: string)
     backup(conversation_id: string) {
       const storage = buildMessageListStorage(conversation_id, dir);
       return storage.backup(
-        path.join(dir, 'aionui-chat-history', 'backup', conversation_id + '_' + Date.now() + '.txt')
+        path.join(dir, 'salomoneui-chat-history', 'backup', conversation_id + '_' + Date.now() + '.txt')
       );
     },
   };
@@ -398,7 +398,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
       }
     }
 
-    console.warn(`[AionUi] Could not find builtin ${dirPath} directory, tried:`, candidates);
+    console.warn(`[SalomoneUI] Could not find builtin ${dirPath} directory, tried:`, candidates);
     return candidates[0];
   };
 
@@ -439,7 +439,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
         overwrite: true,
       });
     } catch (error) {
-      console.warn(`[AionUi] Failed to sync builtin skills directory:`, error);
+      console.warn(`[SalomoneUI] Failed to sync builtin skills directory:`, error);
     }
   }
 
@@ -480,7 +480,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
 
           // 检查源文件是否存在 / Check if source file exists
           if (!existsSync(sourceRulesPath)) {
-            console.warn(`[AionUi] Source rule file not found: ${sourceRulesPath}`);
+            console.warn(`[SalomoneUI] Source rule file not found: ${sourceRulesPath}`);
             continue;
           }
 
@@ -493,7 +493,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
           await fs.writeFile(targetPath, content, 'utf-8');
         } catch (error) {
           // 忽略缺失的语言文件 / Ignore missing locale files
-          console.warn(`[AionUi] Failed to copy rule file ${ruleFile}:`, error);
+          console.warn(`[SalomoneUI] Failed to copy rule file ${ruleFile}:`, error);
         }
       }
     } else {
@@ -525,7 +525,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
 
           // 检查源文件是否存在 / Check if source file exists
           if (!existsSync(sourceSkillsPath)) {
-            console.warn(`[AionUi] Source skill file not found: ${sourceSkillsPath}`);
+            console.warn(`[SalomoneUI] Source skill file not found: ${sourceSkillsPath}`);
             continue;
           }
 
@@ -538,7 +538,7 @@ const initBuiltinAssistantRules = async (): Promise<void> => {
           await fs.writeFile(targetPath, content, 'utf-8');
         } catch (error) {
           // 忽略缺失的技能文件 / Ignore missing skill files
-          console.warn(`[AionUi] Failed to copy skill file ${skillFile}:`, error);
+          console.warn(`[SalomoneUI] Failed to copy skill file ${skillFile}:`, error);
         }
       }
     } else {
@@ -779,7 +779,7 @@ const ensureBuiltinMcpServers = async (): Promise<void> => {
 
     if (changed) {
       await configFile.set('mcp.config', mcpServers);
-      console.log('[AionUi] Built-in MCP servers ensured');
+      console.log('[SalomoneUI] Built-in MCP servers ensured');
     }
 
     // Clear old switch flag after migration
@@ -788,7 +788,7 @@ const ensureBuiltinMcpServers = async (): Promise<void> => {
       await configFile.set('tools.imageGenerationModel', rest as typeof oldConfig);
     }
   } catch (error) {
-    console.error('[AionUi] Failed to ensure built-in MCP servers:', error);
+    console.error('[SalomoneUI] Failed to ensure built-in MCP servers:', error);
   }
 };
 
@@ -825,16 +825,16 @@ const cleanupOrphanedHealthCheckConversations = async () => {
     });
 
     if (deletedCount > 0) {
-      console.log(`[AionUi] Cleaned up ${deletedCount} orphaned health-check conversation(s) on startup`);
+      console.log(`[SalomoneUI] Cleaned up ${deletedCount} orphaned health-check conversation(s) on startup`);
     }
   } catch (error) {
-    console.warn('[AionUi] Failed to cleanup orphaned health-check conversations:', error);
+    console.warn('[SalomoneUI] Failed to cleanup orphaned health-check conversations:', error);
   }
 };
 
 const initStorage = async () => {
   const t0 = performance.now();
-  const mark = (label: string) => console.log(`[AionUi:init] ${label} +${Math.round(performance.now() - t0)}ms`);
+  const mark = (label: string) => console.log(`[SalomoneUI:init] ${label} +${Math.round(performance.now() - t0)}ms`);
   mark('start');
 
   // 1. 先执行数据迁移（在任何目录创建之前）
@@ -881,7 +881,7 @@ const initStorage = async () => {
       await configFile.set('mcp.config', defaultServers);
     }
   } catch (error) {
-    console.error('[AionUi] Failed to initialize default MCP servers:', error);
+    console.error('[SalomoneUI] Failed to initialize default MCP servers:', error);
   }
   mark('4.1 MCP defaults');
 
@@ -1057,7 +1057,7 @@ const initStorage = async () => {
     }
     mark('5.2 assistant config + migrations');
   } catch (error) {
-    console.error('[AionUi] Failed to initialize builtin assistants:', error);
+    console.error('[SalomoneUI] Failed to initialize builtin assistants:', error);
   }
 
   // 6. 初始化数据库（better-sqlite3）
@@ -1171,7 +1171,7 @@ export const loadSkillsContent = async (enabledSkills: string[]): Promise<string
         skillContents.push(`## Skill: ${skillName}\n${content}`);
       }
     } catch (error) {
-      console.warn(`[AionUi] Failed to load skill ${skillName}:`, error);
+      console.warn(`[SalomoneUI] Failed to load skill ${skillName}:`, error);
     }
   }
 

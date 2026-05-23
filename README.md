@@ -1,8 +1,8 @@
-# SalomoneUI (formerly OmniWorkspace)
+# SalomoneUI (formerly SalomoneUI)
 
 > The definitive multi-agent orchestration, cowrok, and computer control platform.
 
-SalomoneUI combines the best aspects of AionUi, OpenHands, OpenManus, Ruflo, Stagehand, and UI-TARS into a single, cohesive, React/FastAPI-based platform.
+SalomoneUI combines the best aspects of SalomoneUI, OpenHands, OpenManus, Ruflo, Stagehand, and UI-TARS into a single, cohesive, React/FastAPI-based platform.
 
 ## Features
 - **Multi-Agent Orchestration**: ReAct and ToolCall agents orchestrated by a Central Orchestrator.

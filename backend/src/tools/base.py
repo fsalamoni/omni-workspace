@@ -1,6 +1,6 @@
 """Base tool abstractions.
 
-Every tool in OmniWorkspace implements ``BaseTool`` and is collected in a
+Every tool in SalomoneUI implements ``BaseTool`` and is collected in a
 ``ToolCollection`` for registration, lookup, and LLM function-schema export.
 """
 
@@ -34,7 +34,7 @@ class ToolResult(BaseModel):
 # ────────────────────────────────────────────────────────────────────
 
 class BaseTool(ABC):
-    """Abstract base class for all OmniWorkspace tools.
+    """Abstract base class for all SalomoneUI tools.
 
     Subclasses must implement :meth:`execute` and set the class-level
     ``name``, ``description``, and ``parameters`` attributes.
