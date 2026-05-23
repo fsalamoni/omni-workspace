@@ -59,6 +59,7 @@ import { useAuth } from './hooks/context/AuthContext';
 import { ConversationHistoryProvider } from './hooks/context/ConversationHistoryContext';
 import HOC from './utils/ui/HOC';
 import { useFirebaseSync } from './hooks/useFirebaseSync';
+import { useFirebaseProviders } from './hooks/useFirebaseProviders';
 
 // Patch Korean locale with missing properties from English locale
 const koKRComplete = {
@@ -112,8 +113,9 @@ const Config: React.FC<PropsWithChildren> = ({ children }) => {
 const Main = () => {
   const { ready } = useAuth();
   
-  // Initialize Firebase sync for conversations and messages
+  // Firebase cloud sync and cloud IPC providers
   useFirebaseSync();
+  useFirebaseProviders();
 
   if (!ready) {
     return null;

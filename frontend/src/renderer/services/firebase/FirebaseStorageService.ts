@@ -93,6 +93,99 @@ export class FirebaseStorageService {
     }
   }
 
+  // --- Settings (Global configs, localStorage) ---
+
+  static async saveSettings(settingsPatch: Record<string, any>): Promise<void> {
+    const basePath = this.getBasePath();
+    if (!basePath) return;
+
+    try {
+      const docRef = doc(db, `${basePath}/settings`, 'global');
+      await setDoc(docRef, {
+        ...settingsPatch,
+        _syncTime: Date.now()
+      }, { merge: true });
+    } catch (error) {
+      console.error('[Firebase] Failed to save settings:', error);
+    }
+  }
+
+  static async getSettings(): Promise<Record<string, any>> {
+    const basePath = this.getBasePath();
+    if (!basePath) return {};
+
+    try {
+      const docRef = doc(db, `${basePath}/settings`, 'global');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      }
+      return {};
+    } catch (error) {
+      console.error('[Firebase] Failed to get settings:', error);
+      return {};
+    }
+  }
+
+  // --- Assistants ---
+
+  static async saveAssistant(assistantId: string, data: Record<string, any>): Promise<void> {
+    const basePath = this.getBasePath();
+    if (!basePath) return;
+
+    try {
+      const docRef = doc(db, `${basePath}/assistants`, assistantId);
+      await setDoc(docRef, {
+        ...data,
+        _syncTime: Date.now()
+      }, { merge: true });
+    } catch (error) {
+      console.error('[Firebase] Failed to save assistant:', error);
+    }
+  }
+
+  static async getAssistant(assistantId: string): Promise<Record<string, any> | null> {
+    const basePath = this.getBasePath();
+    if (!basePath) return null;
+
+    try {
+      const docRef = doc(db, `${basePath}/assistants`, assistantId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      }
+      return null;
+    } catch (error) {
+      console.error('[Firebase] Failed to get assistant:', error);
+      return null;
+    }
+  }
+
+  static async getAllAssistants(): Promise<Record<string, any>[]> {
+    const basePath = this.getBasePath();
+    if (!basePath) return [];
+
+    try {
+      const q = query(collection(db, `${basePath}/assistants`));
+      const snapshot = await getDocs(q);
+      return snapshot.docs.map(doc => doc.data());
+    } catch (error) {
+      console.error('[Firebase] Failed to get all assistants:', error);
+      return [];
+    }
+  }
+
+  static async deleteAssistant(assistantId: string): Promise<void> {
+    const basePath = this.getBasePath();
+    if (!basePath) return;
+
+    try {
+      await deleteDoc(doc(db, `${basePath}/assistants`, assistantId));
+    } catch (error) {
+      console.error('[Firebase] Failed to delete assistant:', error);
+    }
+  }
+
   // --- Sync Listeners ---
   
   /**

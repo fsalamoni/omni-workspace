@@ -22,6 +22,24 @@ export function useFirebaseSync() {
       if (syncInProgress.current) return;
       syncInProgress.current = true;
       try {
+        // --- 1. Settings (localStorage) ---
+        const remoteSettings = await FirebaseStorageService.getSettings();
+        let settingsChanged = false;
+        const originalSetItem = Object.getPrototypeOf(window.localStorage).setItem;
+        for (const [key, value] of Object.entries(remoteSettings)) {
+          if (key !== '_syncTime') {
+            const local = localStorage.getItem(key);
+            if (local !== value) {
+              originalSetItem.call(window.localStorage, key, value);
+              settingsChanged = true;
+            }
+          }
+        }
+        if (settingsChanged) {
+          window.dispatchEvent(new Event('storage'));
+        }
+
+        // --- 2. Conversations & Messages ---
         const remoteConversations = await FirebaseStorageService.getConversations();
         
         // Obter locais
@@ -109,8 +127,18 @@ export function useFirebaseSync() {
       }
     });
 
+    // --- 3. Override LocalStorage to push Settings ---
+    const originalSetItem = window.localStorage.setItem;
+    window.localStorage.setItem = function(key, value) {
+      originalSetItem.apply(this, [key, value]);
+      if (auth.currentUser && !syncInProgress.current) {
+        FirebaseStorageService.saveSettings({ [key]: value }).catch(e => console.error(e));
+      }
+    };
+
     return () => {
       unsubscribeAuth();
+      window.localStorage.setItem = originalSetItem;
     };
   }, []);
 }
