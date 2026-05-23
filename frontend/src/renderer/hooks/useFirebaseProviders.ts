@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { ipcBridge } from '@/common';
 import { FirebaseStorageService } from '../services/firebase/FirebaseStorageService';
 import { auth } from '@/common/firebase';
+import { BUILTIN_SKILLS, BUILTIN_ASSISTANTS } from './builtinData';
 
 export function useFirebaseProviders() {
   useEffect(() => {
@@ -20,6 +21,15 @@ export function useFirebaseProviders() {
       if (isMocking) return;
       isMocking = true;
       console.log('[FirebaseProviders] Intercepting IPC calls for Cloud Native mode');
+
+      // --- Built-in Data Mocks ---
+      ipcBridge.extensions.getAssistants.provider(async () => {
+        return BUILTIN_ASSISTANTS;
+      });
+
+      ipcBridge.fs.listBuiltinAutoSkills.provider(async () => {
+        return BUILTIN_SKILLS;
+      });
 
       // --- Assistants (Rules) ---
       ipcBridge.fs.readAssistantRule.provider(async ({ assistantId }) => {

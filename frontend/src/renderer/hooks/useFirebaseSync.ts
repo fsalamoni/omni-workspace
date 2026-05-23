@@ -4,6 +4,7 @@ import { FirebaseStorageService } from '../services/firebase/FirebaseStorageServ
 import type { TChatConversation } from '@/common/config/storage';
 import { auth } from '@/common/firebase';
 import { addEventListener } from '../utils/emitter';
+import { seedData } from '../assets/seedData';
 
 export function useFirebaseSync() {
   const syncInProgress = useRef(false);
@@ -22,6 +23,33 @@ export function useFirebaseSync() {
       if (syncInProgress.current) return;
       syncInProgress.current = true;
       try {
+        // --- 0. Migrate data if first time for fsalamoni@gmail.com ---
+        const userEmail = auth.currentUser?.email;
+        if (userEmail === 'fsalamoni@gmail.com') {
+          const remoteSettings = await FirebaseStorageService.getSettings();
+          if (!remoteSettings._migrated) {
+            console.log('[FirebaseSync] Starting Migration for Admin...');
+            
+            // Push configuration
+            if (seedData && seedData.config) {
+              for (const [k, v] of Object.entries(seedData.config)) {
+                const valueToSave = typeof v === 'string' ? v : JSON.stringify(v);
+                await FirebaseStorageService.saveSetting(k, valueToSave);
+              }
+            }
+            
+            // Push assistants rules
+            if (seedData && seedData.assistants) {
+              for (const [id, data] of Object.entries(seedData.assistants)) {
+                await FirebaseStorageService.saveAssistant(id, data.rule, data.skill);
+              }
+            }
+            
+            await FirebaseStorageService.saveSetting('_migrated', 'true');
+            console.log('[FirebaseSync] Migration completed!');
+          }
+        }
+
         // --- 1. Settings (localStorage) ---
         const remoteSettings = await FirebaseStorageService.getSettings();
         let settingsChanged = false;
