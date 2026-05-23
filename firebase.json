@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "salomoneui",
     "public": "frontend/out/renderer",
     "ignore": [
       "firebase.json",
