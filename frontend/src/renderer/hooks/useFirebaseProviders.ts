@@ -24,7 +24,39 @@ export function useFirebaseProviders() {
 
       // --- Built-in Data Mocks ---
       ipcBridge.extensions.getAssistants.provider(async () => {
-        return BUILTIN_ASSISTANTS;
+        try {
+          const { ASSISTANT_PRESETS } = await import('@/common/config/presets/assistantPresets');
+          return ASSISTANT_PRESETS.map((preset) => {
+            const enabledByDefault =
+              preset.id === 'word-creator' ||
+              preset.id === 'ppt-creator' ||
+              preset.id === 'excel-creator' ||
+              preset.id === 'academic-paper' ||
+              preset.id === 'morph-ppt' ||
+              preset.id === 'cowork' ||
+              preset.id === 'openclaw-setup' ||
+              preset.id === 'star-office-helper' ||
+              preset.id === 'story-roleplay' ||
+              preset.id === 'moltbook' ||
+              preset.id === 'beautiful-mermaid';
+            
+            return {
+              id: `builtin-${preset.id}`,
+              name: preset.nameI18n['en-US'],
+              nameI18n: preset.nameI18n,
+              description: preset.descriptionI18n['en-US'] || '',
+              descriptionI18n: preset.descriptionI18n,
+              avatar: preset.avatar,
+              isPreset: true,
+              enabled: enabledByDefault,
+              enabledSkills: preset.defaultEnabledSkills || [],
+              enabledExtensions: []
+            };
+          });
+        } catch (e) {
+          console.error('Failed to load ASSISTANT_PRESETS', e);
+          return [];
+        }
       });
 
       ipcBridge.fs.listBuiltinAutoSkills.provider(async () => {
@@ -39,11 +71,37 @@ export function useFirebaseProviders() {
         return { success: true, msg: 'Skills Market disabled in Cloud Mode' };
       });
 
-      ipcBridge.fs.readBuiltinSkill.provider(async ({ fileName }) => {
-        if (fileName === 'aionui-skills' || fileName === 'salomoneui-skills') {
-          return `---\nname: aionui-skills\ndescription: "Access the AionUI Skills registry — discover and download AI agent skills."\n---\n\n# AionUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/aionui-skills\ncurl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
+      ipcBridge.fs.readBuiltinRule.provider(async ({ fileName }) => {
+        try {
+          const rulesMap = (await import('@/renderer/assets/rulesMap.json')).default;
+          // Clean the filename by removing .md extension if present to match the map keys
+          const cleanName = fileName.replace('.md', '');
+          // Or we can just try both clean and exact
+          if (rulesMap[fileName]) return rulesMap[fileName];
+          if (rulesMap[`${cleanName}.md`]) return rulesMap[`${cleanName}.md`];
+          return '';
+        } catch (e) {
+          console.error('[Mock] Failed to load rulesMap.json:', e);
+          return '';
         }
-        return '';
+      });
+
+      ipcBridge.fs.readBuiltinSkill.provider(async ({ fileName }) => {
+        try {
+          const skillsMap = (await import('@/renderer/assets/skillsMap.json')).default;
+          // Clean the filename by removing .md extension if present to match the map keys
+          const cleanName = fileName.replace('.md', '');
+          if (skillsMap[cleanName]) {
+            return skillsMap[cleanName];
+          }
+          if (fileName === 'aionui-skills' || fileName === 'salomoneui-skills') {
+            return `---\nname: aionui-skills\ndescription: "Access the AionUI Skills registry — discover and download AI agent skills."\n---\n\n# AionUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/aionui-skills\ncurl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
+          }
+          return '';
+        } catch (e) {
+          console.error('[Mock] Failed to load skillsMap.json:', e);
+          return '';
+        }
       });
 
       // --- Assistants (Rules) ---
