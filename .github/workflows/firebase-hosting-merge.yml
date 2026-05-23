@@ -21,7 +21,7 @@ jobs:
         run: cd frontend && bun install
 
       - name: Build Frontend
-        run: cd frontend && bun run build:web
+        run: cd frontend && bun run build:renderer:web
         env:
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
           VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
