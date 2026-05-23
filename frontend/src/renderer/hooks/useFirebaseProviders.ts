@@ -31,6 +31,21 @@ export function useFirebaseProviders() {
         return BUILTIN_SKILLS;
       });
 
+      ipcBridge.fs.enableSkillsMarket.provider(async () => {
+        return { success: true, msg: 'Skills Market enabled in Cloud Mode' };
+      });
+
+      ipcBridge.fs.disableSkillsMarket.provider(async () => {
+        return { success: true, msg: 'Skills Market disabled in Cloud Mode' };
+      });
+
+      ipcBridge.fs.readBuiltinSkill.provider(async ({ fileName }) => {
+        if (fileName === 'aionui-skills' || fileName === 'salomoneui-skills') {
+          return `---\nname: aionui-skills\ndescription: "Access the AionUI Skills registry — discover and download AI agent skills."\n---\n\n# AionUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/aionui-skills\ncurl -s https://skills.aionui.com/SKILL.md > ~/.config/aionui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
+        }
+        return '';
+      });
+
       // --- Assistants (Rules) ---
       ipcBridge.fs.readAssistantRule.provider(async ({ assistantId }) => {
         ensureAuth();
@@ -69,13 +84,27 @@ export function useFirebaseProviders() {
         return true;
       });
 
-      // --- Skills Hub ---
       ipcBridge.fs.listAvailableSkills.provider(async () => {
-        // Here we could fetch cloud-saved skills from Firebase if we had a collection.
-        // For now, we return empty or pre-defined, as the user didn't mention custom standalone skills,
-        // but if they had them, we should load them from Firebase.
         const settings = await FirebaseStorageService.getSettings();
-        return settings.skills || [];
+        const customSkills = settings.skills || [];
+        
+        try {
+          const ConfigStorage = (await import('@/common/config/storage')).ConfigStorage;
+          const isMarketEnabled = await ConfigStorage.get('skillsMarket.enabled');
+          if (isMarketEnabled) {
+            customSkills.push({
+              name: 'aionui-skills',
+              description: 'Access the AionUI Skills registry — discover and download AI agent skills.',
+              location: 'builtin',
+              isCustom: false,
+              source: 'builtin'
+            });
+          }
+        } catch (e) {
+          console.warn('[FirebaseProviders] Failed to read skillsMarket.enabled', e);
+        }
+        
+        return customSkills;
       });
       
       ipcBridge.fs.getSkillPaths.provider(async () => {

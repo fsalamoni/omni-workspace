@@ -383,7 +383,7 @@ export function initFsBridge(): void {
           {
             headers: {
               'User-Agent': 'SalomoneUI-Preview',
-              Referer: 'https://github.com/iOfficeAI/SalomoneUI',
+              Referer: 'https://github.com/iOfficeAI/AionUi',
             },
           },
           (response) => {
@@ -1816,6 +1816,6 @@ async function readBundledSkillsMarketMd(): Promise<string> {
     return await fs.readFile(fallbackPath, 'utf-8');
   } catch (error) {
     console.warn('[fsBridge] Failed to read bundled salomoneui-skills SKILL.md:', error);
-    return `---\nname: salomoneui-skills\ndescription: "Access the SalomoneUI Skills registry — discover and download AI agent skills."\n---\n\n# SalomoneUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/salomoneui-skills\ncurl -s https://skills.salomoneui.com/SKILL.md > ~/.config/salomoneui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
+    return `---\nname: salomoneui-skills\ndescription: "Access the SalomoneUI Skills registry — discover and download AI agent skills."\n---\n\n# SalomoneUI Skills Registry\n\nFetch full instructions:\n\n\`\`\`bash\nmkdir -p ~/.config/salomoneui-skills\ncurl -s https://skills.aionui.com/SKILL.md > ~/.config/salomoneui-skills/SKILL.md\n\`\`\`\n\nThen read and follow the instructions in that file.\n`;
   }
 }
