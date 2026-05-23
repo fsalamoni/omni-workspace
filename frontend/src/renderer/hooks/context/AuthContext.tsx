@@ -16,6 +16,7 @@ export interface AuthUser {
   username: string;
   email?: string;
   photoURL?: string;
+  isAdmin?: boolean;
 }
 
 interface LoginParams {
@@ -63,7 +64,8 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
           id: firebaseUser.uid,
           username: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
           email: firebaseUser.email || undefined,
-          photoURL: firebaseUser.photoURL || undefined
+          photoURL: firebaseUser.photoURL || undefined,
+          isAdmin: firebaseUser.email === 'fsalamoni@gmail.com'
         });
         setStatus('authenticated');
       } else {
