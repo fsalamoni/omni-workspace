@@ -44,6 +44,7 @@ if (win.electronAPI) {
   const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   const defaultHost = `${window.location.hostname}:${WEBUI_DEFAULT_PORT}`;
   const socketUrl = `${protocol}//${window.location.host || defaultHost}`;
+  const isCloudNative = window.location.host.includes('.web.app') || window.location.host.includes('.firebaseapp.com');
 
   type QueuedMessage = { name: string; data: unknown };
 
@@ -84,6 +85,8 @@ if (win.electronAPI) {
 
   // 3.建立 WebSocket 连接（或复用已有的 OPEN/CONNECTING 状态）
   const connect = () => {
+    if (isCloudNative) return; // Do not attempt WebSocket on Firebase Hosting
+    
     if (socket && (socket.readyState === WebSocket.OPEN || socket.readyState === WebSocket.CONNECTING)) {
       return;
     }
@@ -214,6 +217,8 @@ if (win.electronAPI) {
 
   bridge.adapter({
     emit(name, data) {
+      if (isCloudNative) return; // Completely ignore emitted IPC messages if pure cloud, to avoid queue memory leak
+      
       const message: QueuedMessage = { name, data };
 
       ensureSocket();

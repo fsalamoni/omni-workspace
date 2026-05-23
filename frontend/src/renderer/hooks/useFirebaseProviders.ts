@@ -22,45 +22,45 @@ export function useFirebaseProviders() {
       console.log('[FirebaseProviders] Intercepting IPC calls for Cloud Native mode');
 
       // --- Assistants (Rules) ---
-      ipcBridge.application.readAssistantRule.provider(async ({ assistantId }) => {
+      ipcBridge.fs.readAssistantRule.provider(async ({ assistantId }) => {
         ensureAuth();
         const data = await FirebaseStorageService.getAssistant(assistantId);
         return data?.rule || '';
       });
 
-      ipcBridge.application.writeAssistantRule.provider(async ({ assistantId, content }) => {
+      ipcBridge.fs.writeAssistantRule.provider(async ({ assistantId, content }) => {
         ensureAuth();
         await FirebaseStorageService.saveAssistant(assistantId, { rule: content });
         return true;
       });
 
-      ipcBridge.application.deleteAssistantRule.provider(async ({ assistantId }) => {
+      ipcBridge.fs.deleteAssistantRule.provider(async ({ assistantId }) => {
         ensureAuth();
         await FirebaseStorageService.saveAssistant(assistantId, { rule: '' });
         return true;
       });
 
       // --- Assistants (Skills) ---
-      ipcBridge.application.readAssistantSkill.provider(async ({ assistantId }) => {
+      ipcBridge.fs.readAssistantSkill.provider(async ({ assistantId }) => {
         ensureAuth();
         const data = await FirebaseStorageService.getAssistant(assistantId);
         return data?.skill || '';
       });
 
-      ipcBridge.application.writeAssistantSkill.provider(async ({ assistantId, content }) => {
+      ipcBridge.fs.writeAssistantSkill.provider(async ({ assistantId, content }) => {
         ensureAuth();
         await FirebaseStorageService.saveAssistant(assistantId, { skill: content });
         return true;
       });
 
-      ipcBridge.application.deleteAssistantSkill.provider(async ({ assistantId }) => {
+      ipcBridge.fs.deleteAssistantSkill.provider(async ({ assistantId }) => {
         ensureAuth();
         await FirebaseStorageService.saveAssistant(assistantId, { skill: '' });
         return true;
       });
 
       // --- Skills Hub ---
-      ipcBridge.application.listAvailableSkills.provider(async () => {
+      ipcBridge.fs.listAvailableSkills.provider(async () => {
         // Here we could fetch cloud-saved skills from Firebase if we had a collection.
         // For now, we return empty or pre-defined, as the user didn't mention custom standalone skills,
         // but if they had them, we should load them from Firebase.
@@ -68,7 +68,7 @@ export function useFirebaseProviders() {
         return settings.skills || [];
       });
       
-      ipcBridge.application.getSkillPaths.provider(async () => {
+      ipcBridge.fs.getSkillPaths.provider(async () => {
         return { userSkillsDir: '/cloud/skills', builtinSkillsDir: '/cloud/builtin-skills' };
       });
     };
