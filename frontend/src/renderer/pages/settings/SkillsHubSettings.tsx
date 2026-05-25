@@ -52,6 +52,9 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
   const [highlightedSkill, setHighlightedSkill] = useState<string | null>(null);
   const skillRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [loading, setLoading] = useState(false);
+  const [showInstallModal, setShowInstallModal] = useState(false);
+  const [skillUrl, setSkillUrl] = useState('');
+  const [installingSkill, setInstallingSkill] = useState(false);
   const [availableSkills, setAvailableSkills] = useState<SkillInfo[]>([]);
   const [skillPaths, setSkillPaths] = useState<{ userSkillsDir: string; builtinSkillsDir: string } | null>(null);
   const [externalSources, setExternalSources] = useState<ExternalSource[]>([]);
@@ -139,6 +142,26 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
     } catch (error) {
       console.error('Failed to import skill:', error);
       Message.error(t('settings.skillsHub.importError', { defaultValue: 'Error importing skill' }));
+    }
+  };
+
+  const handleInstallSkill = async () => {
+    if (!skillUrl.trim()) return;
+    setInstallingSkill(true);
+    try {
+      const result = await ipcBridge.fs.installSkillFromMarket.invoke({ skillUrl });
+      if (result.success) {
+        Message.success('Skill downloaded successfully!');
+        setShowInstallModal(false);
+        setSkillUrl('');
+        void fetchData();
+      } else {
+        Message.error(`Failed to install skill: ${result.msg}`);
+      }
+    } catch (err) {
+      Message.error('Error contacting internal installer');
+    } finally {
+      setInstallingSkill(false);
     }
   };
 
@@ -412,6 +435,14 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
             </div>
 
             <div className='flex flex-col sm:flex-row items-stretch sm:items-center gap-12px w-full lg:w-auto shrink-0'>
+              <Button 
+                type='primary' 
+                icon={<Plus />} 
+                className='rd-full px-16px font-medium shrink-0 h-32px'
+                onClick={() => setShowInstallModal(true)}
+              >
+                Download Skill do Mercado
+              </Button>
               <div className='relative group shrink-0 w-full sm:w-[200px] lg:w-[240px]'>
                 <div className='absolute left-12px top-1/2 -translate-y-1/2 text-t-tertiary group-focus-within:text-primary-6 flex pointer-events-none transition-colors'>
                   <Search size={15} />
@@ -694,6 +725,33 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
   return (
     <>
       {withWrapper ? <SettingsPageWrapper>{mainContent}</SettingsPageWrapper> : mainContent}
+
+      {/* Install Skill Modal */}
+      <Modal
+        title='Instalar Skill do Mercado'
+        visible={showInstallModal}
+        onCancel={() => {
+          setShowInstallModal(false);
+          setSkillUrl('');
+        }}
+        onOk={handleInstallSkill}
+        confirmLoading={installingSkill}
+        okText='Baixar e Instalar'
+        cancelText='Cancelar'
+        okButtonProps={{ disabled: !skillUrl.trim() }}
+      >
+        <div className='flex flex-col gap-16px'>
+          <Typography.Text type='secondary'>
+            Cole o nome da skill ou a URL completa (Link ou repositório do Github) para baixar e instalar automaticamente em seu ambiente local portátil.
+          </Typography.Text>
+          <Input
+            placeholder='Ex: youtube-summarizer ou https://github.com/...'
+            value={skillUrl}
+            onChange={setSkillUrl}
+            autoFocus
+          />
+        </div>
+      </Modal>
 
       {/* Add Custom External Path Modal */}
       <Modal

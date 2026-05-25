@@ -96,6 +96,11 @@ const ensureCliSafeSymlink = (targetPath: string, symlinkName: string): string =
  * Release 使用 ~/.salomoneui，Dev 模式使用 ~/.salomoneui-dev。
  */
 export const getDataPath = (): string => {
+  // Se for versão portátil, força a gravação no mesmo diretório do pendrive
+  if (process.env.PORTABLE_EXECUTABLE_DIR) {
+    const dataPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'salomoneui-data');
+    return ensureCliSafeSymlink(dataPath, getEnvAwareName('.salomoneui'));
+  }
   const rootPath = getElectronPathOrFallback('userData');
   const dataPath = path.join(rootPath, 'salomoneui');
   return ensureCliSafeSymlink(dataPath, getEnvAwareName('.salomoneui'));
@@ -108,6 +113,11 @@ export const getDataPath = (): string => {
  * Release 使用 ~/.salomoneui-config，Dev 模式使用 ~/.salomoneui-config-dev。
  */
 export const getConfigPath = (): string => {
+  // Se for versão portátil, força a gravação no mesmo diretório do pendrive
+  if (process.env.PORTABLE_EXECUTABLE_DIR) {
+    const configPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'salomoneui-config');
+    return ensureCliSafeSymlink(configPath, getEnvAwareName('.salomoneui-config'));
+  }
   const rootPath = getElectronPathOrFallback('userData');
   const configPath = path.join(rootPath, 'config');
   return ensureCliSafeSymlink(configPath, getEnvAwareName('.salomoneui-config'));

@@ -1,13 +1,4 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { auth } from '@/common/firebase';
-import { 
-  signInWithEmailAndPassword, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
-  signOut,
-  onAuthStateChanged,
-  User
-} from 'firebase/auth';
 
 type AuthStatus = 'checking' | 'authenticated' | 'unauthenticated';
 
@@ -58,74 +49,32 @@ export const AuthProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser: User | null) => {
-      if (firebaseUser) {
-        setUser({
-          id: firebaseUser.uid,
-          username: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'User',
-          email: firebaseUser.email || undefined,
-          photoURL: firebaseUser.photoURL || undefined,
-          isAdmin: firebaseUser.email === 'fsalamoni@gmail.com'
-        });
-        setStatus('authenticated');
-      } else {
-        setUser(null);
-        setStatus('unauthenticated');
-      }
-      setReady(true);
+    // Offline/Desktop mode: Bypass Firebase and authenticate directly
+    setUser({
+      id: 'local-admin',
+      username: 'Salomone Local Admin',
+      email: 'fsalamoni@gmail.com',
+      isAdmin: true
     });
-
-    return () => unsubscribe();
+    setStatus('authenticated');
+    setReady(true);
   }, []);
 
   const refresh = useCallback(async () => {
-    // onAuthStateChanged handles automatic refreshes
+    // No-op for local
   }, []);
 
   const clearAuthCache = useCallback(() => {
-    // No-op for Firebase Auth
+    // No-op for local
   }, []);
 
-  const login = useCallback(async ({ username, password, provider = 'email' }: LoginParams): Promise<LoginResult> => {
-    try {
-      if (provider === 'google') {
-        const googleProvider = new GoogleAuthProvider();
-        await signInWithPopup(auth, googleProvider);
-      } else {
-        if (!username || !password) {
-          return { success: false, code: 'invalidCredentials', message: 'Email and password are required' };
-        }
-        await signInWithEmailAndPassword(auth, username, password);
-      }
-      
-      return { success: true };
-    } catch (error: any) {
-      console.error('Firebase login error:', error);
-      let code: LoginErrorCode = 'unknown';
-      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-        code = 'invalidCredentials';
-      } else if (error.code === 'auth/too-many-requests') {
-        code = 'tooManyAttempts';
-      } else if (error.code === 'auth/network-request-failed') {
-        code = 'networkError';
-      }
-      
-      return {
-        success: false,
-        message: error.message || 'Login failed',
-        code,
-      };
-    }
+  const login = useCallback(async ({ username, password }: LoginParams): Promise<LoginResult> => {
+    setReady(true);
+    return { success: true };
   }, []);
 
   const logout = useCallback(async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-      setStatus('unauthenticated');
-    } catch (error) {
-      console.error('Logout request failed:', error);
-    }
+    return;
   }, []);
 
   const value = useMemo<AuthContextValue>(

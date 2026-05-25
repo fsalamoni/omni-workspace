@@ -57,7 +57,7 @@ const useDebug = () => {
   return { onClick };
 };
 
-const UpdateModal = React.lazy(() => import('@/renderer/components/settings/UpdateModal'));
+
 
 const DEFAULT_SIDER_WIDTH = 250;
 const DESKTOP_COLLAPSED_WIDTH = 64;
@@ -92,7 +92,7 @@ const Layout: React.FC<{
     typeof window === 'undefined' ? 390 : window.innerWidth
   );
   const [customCss, setCustomCss] = useState<string>('');
-  const [shouldMountUpdateModal, setShouldMountUpdateModal] = useState(false);
+
   const { onClick } = useDebug();
   const { contextHolder: multiAgentContextHolder } = useMultiAgentDetection();
   const { contextHolder: directorySelectionContextHolder } = useDirectorySelection();
@@ -476,7 +476,7 @@ const Layout: React.FC<{
                     ></path>
                   </svg>
                 </div>
-                <div className='flex-1 text-20px text-1 collapsed-hidden font-bold'>AionUi</div>
+                <div className='flex-1 text-20px text-1 collapsed-hidden font-bold'>SalomoneUI</div>
                 {isMobile && !collapsed && (
                   <button
                     type='button'
@@ -533,9 +533,6 @@ const Layout: React.FC<{
               {multiAgentContextHolder}
               {directorySelectionContextHolder}
               <PwaPullToRefresh />
-              <Suspense fallback={null}>
-                <UpdateModal />
-              </Suspense>
             </ArcoLayout.Content>
           </ArcoLayout>
         </div>

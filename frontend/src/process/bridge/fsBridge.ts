@@ -1800,6 +1800,45 @@ export function initFsBridge(): void {
       };
     }
   });
+
+  // Skills Market: download a skill
+  ipcBridge.fs.installSkillFromMarket.provider(async ({ skillUrl }) => {
+    try {
+      const { getSkillsDir } = await import('@process/utils/initStorage');
+      const userSkillsDir = getSkillsDir();
+      
+      let skillName = 'downloaded-skill-' + Date.now();
+      
+      try {
+        const urlObj = new URL(skillUrl);
+        const parts = urlObj.pathname.split('/').filter(Boolean);
+        if (parts.length > 0) {
+          const lastPart = parts[parts.length - 1];
+          skillName = lastPart.replace(/\.(md|zip|git)$/i, '');
+        }
+      } catch (e) {
+        skillName = skillUrl.replace(/[^a-zA-Z0-9-]/g, '-').replace(/-+/g, '-');
+      }
+
+      const targetDir = path.join(userSkillsDir, skillName);
+
+      if (skillUrl.endsWith('.git') || skillUrl.includes('github.com')) {
+         const { execSync } = require('child_process');
+         execSync(`git clone ${skillUrl} "${targetDir}"`);
+      } else {
+         const response = await fetch(skillUrl);
+         if (!response.ok) throw new Error(`Failed to fetch: ${response.statusText}`);
+         const content = await response.text();
+         await fs.mkdir(targetDir, { recursive: true });
+         await fs.writeFile(path.join(targetDir, 'SKILL.md'), content, 'utf-8');
+      }
+
+      return { success: true, data: { skillName } };
+    } catch (error) {
+      console.error('[fsBridge] Failed to install skill from market:', error);
+      return { success: false, error: (error as Error).message };
+    }
+  });
 }
 
 /**

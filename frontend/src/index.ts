@@ -293,8 +293,8 @@ const createWindow = ({ showOnReady = true }: { showOnReady?: boolean } = {}): v
   // Initialize auto-updater service (skip when disabled via env, e.g. E2E / CI)
   // 初始化自动更新服务（通过环境变量禁用时跳过，例如 E2E / CI 场景）
   const isCiRuntime = process.env.CI === 'true' || process.env.CI === '1' || process.env.GITHUB_ACTIONS === 'true';
-  const disableAutoUpdater =
-    process.env.AIONUI_DISABLE_AUTO_UPDATE === '1' || process.env.AIONUI_E2E_TEST === '1' || isCiRuntime;
+  // Desativado para a versão SalomoneUI - Evita que ele tente baixar a versão 'AionUi' oficial.
+  const disableAutoUpdater = true;
   if (!disableAutoUpdater) {
     Promise.all([import('./process/services/autoUpdaterService'), import('./process/bridge/updateBridge')])
       .then(([{ autoUpdaterService }, { createAutoUpdateStatusBroadcast }]) => {

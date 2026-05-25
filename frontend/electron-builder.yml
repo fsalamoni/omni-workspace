@@ -117,10 +117,9 @@ extraResources:
 win:
   target:
     - nsis
-    #    - msi
+    - portable
     - zip
   icon: resources/app.ico # Use the checked-in Windows icon resource for executable metadata/icon patching
-  artifactName: ${productName}-${version}-${os}-${arch}.${ext}
 
 nsis:
   oneClick: false
@@ -129,8 +128,11 @@ nsis:
   createStartMenuShortcut: true
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
-  artifactName: ${productName}-${version}-${os}-${arch}.${ext}
+  artifactName: ${productName}-${version}-Setup.${ext}
   differentialPackage: false
+
+portable:
+  artifactName: ${productName}-${version}-Portable.${ext}
 
 mac:
   target:

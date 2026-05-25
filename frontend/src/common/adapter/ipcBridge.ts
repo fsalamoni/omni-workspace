@@ -333,6 +333,8 @@ export const fs = {
   // Skills Market: inject/remove the salomoneui-skills builtin skill
   enableSkillsMarket: bridge.buildProvider<IBridgeResponse, void>('enable-skills-market'),
   disableSkillsMarket: bridge.buildProvider<IBridgeResponse, void>('disable-skills-market'),
+  // Download and install a skill directly from a URL (e.g. from skills.aionui.com)
+  installSkillFromMarket: bridge.buildProvider<IBridgeResponse<{ skillName: string }>, { skillUrl: string }>('install-skill-from-market'),
 };
 
 export const speechToText = {
