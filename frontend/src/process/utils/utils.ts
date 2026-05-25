@@ -96,10 +96,23 @@ const ensureCliSafeSymlink = (targetPath: string, symlinkName: string): string =
  * Release 使用 ~/.salomoneui，Dev 模式使用 ~/.salomoneui-dev。
  */
 export const getDataPath = (): string => {
-  // Se for versão portátil, força a gravação no mesmo diretório do pendrive
+  // Se for versão portátil do electron-builder (.exe comprimido)
   if (process.env.PORTABLE_EXECUTABLE_DIR) {
     const dataPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'salomoneui-data');
     return ensureCliSafeSymlink(dataPath, getEnvAwareName('.salomoneui'));
+  }
+
+  // Se for versão portátil raiz (pasta extraída) - verifica se existe a pasta ao lado do .exe
+  try {
+    const exeDir = process.execPath ? path.dirname(process.execPath) : '';
+    if (exeDir && exeDir.length > 3) { // Protege contra diretório raiz
+      const localDataPath = path.join(exeDir, 'salomoneui-data');
+      if (existsSync(localDataPath)) {
+        return ensureCliSafeSymlink(localDataPath, getEnvAwareName('.salomoneui'));
+      }
+    }
+  } catch (e) {
+    // Ignora erros de caminho e cai para o padrão
   }
   const rootPath = getElectronPathOrFallback('userData');
   const dataPath = path.join(rootPath, 'salomoneui');
@@ -113,10 +126,23 @@ export const getDataPath = (): string => {
  * Release 使用 ~/.salomoneui-config，Dev 模式使用 ~/.salomoneui-config-dev。
  */
 export const getConfigPath = (): string => {
-  // Se for versão portátil, força a gravação no mesmo diretório do pendrive
+  // Se for versão portátil do electron-builder (.exe comprimido)
   if (process.env.PORTABLE_EXECUTABLE_DIR) {
     const configPath = path.join(process.env.PORTABLE_EXECUTABLE_DIR, 'salomoneui-config');
     return ensureCliSafeSymlink(configPath, getEnvAwareName('.salomoneui-config'));
+  }
+
+  // Se for versão portátil raiz (pasta extraída) - verifica se existe a pasta ao lado do .exe
+  try {
+    const exeDir = process.execPath ? path.dirname(process.execPath) : '';
+    if (exeDir && exeDir.length > 3) {
+      const localConfigPath = path.join(exeDir, 'salomoneui-config');
+      if (existsSync(localConfigPath)) {
+        return ensureCliSafeSymlink(localConfigPath, getEnvAwareName('.salomoneui-config'));
+      }
+    }
+  } catch (e) {
+    // Ignora erros de caminho e cai para o padrão
   }
   const rootPath = getElectronPathOrFallback('userData');
   const configPath = path.join(rootPath, 'config');
